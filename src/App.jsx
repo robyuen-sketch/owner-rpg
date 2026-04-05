@@ -143,7 +143,16 @@ function App() {
     if (overlayData?.type === 'success') {
       const nextIndex = currentQuestionIndex + 1
       if (nextIndex >= gameScript.length) {
-        setGamePhase('victory')
+        // Game complete! Check for final realm completion cutscene first
+        const finalRealm = gameScript[currentQuestionIndex].realm
+        const finalCutscene = getRealmCutscene(finalRealm, 'completion')
+        if (finalCutscene) {
+          setRealmCutsceneData(finalCutscene)
+          setPendingMiniGame(null)
+          setGamePhase('realm_cutscene_final')
+        } else {
+          setGamePhase('victory')
+        }
       } else {
         const completedRealm = gameScript[currentQuestionIndex].realm
         const nextRealm = gameScript[nextIndex]?.realm
@@ -341,6 +350,13 @@ function App() {
         scoreMultiplier={MINI_GAME_MULTIPLIER}
       />
     )
+  }
+
+  if (gamePhase === 'realm_cutscene_final' && realmCutsceneData) {
+    return <RealmCutscene slides={realmCutsceneData} onComplete={() => {
+      setRealmCutsceneData(null)
+      setGamePhase('victory')
+    }} />
   }
 
   if (gamePhase === 'gameover') {
