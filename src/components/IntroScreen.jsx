@@ -79,7 +79,7 @@ function IntroScreen({ onStart, leaderboard = [] }) {
         )}
 
         <div className="intro-stats">
-          <span>LIVES: 7</span>
+          <span>LIVES: 10</span>
           <span>GEMS: 0/{/* dynamically would need total */}89</span>
         </div>
 
