@@ -1,0 +1,363 @@
+.victory-screen {
+  height: 100vh;
+  background: #1a1400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.victory-visible {
+  opacity: 1;
+}
+
+.victory-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255, 215, 0, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+  animation: goldenPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes goldenPulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.victory-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffd700;
+  box-shadow: 0 0 10px #ffd700, 0 0 20px rgba(255, 215, 0, 0.5);
+  animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+  0% { top: 100%; opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { top: -5%; opacity: 0; transform: scale(0); }
+}
+
+.victory-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px;
+  animation: slideUp 1s ease-out;
+}
+
+/* Victory Ana avatar - celebrating */
+.victory-ana-celebrate {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #ffd700;
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 60px rgba(255, 215, 0, 0.3);
+  animation: anaJump 1s ease-in-out infinite;
+}
+
+.victory-ana-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes anaJump {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-30px); }
+  60% { transform: translateY(-30px); }
+}
+
+.victory-title {
+  font-size: 36px;
+  color: #ffd700;
+  text-shadow:
+    3px 3px 0 #8b6914,
+    0 0 30px rgba(255, 215, 0, 0.8),
+    0 0 60px rgba(255, 215, 0, 0.4);
+  letter-spacing: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.victory-gems-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.victory-gem {
+  font-size: 20px;
+  opacity: 0.2;
+  filter: grayscale(1);
+  transition: all 0.3s;
+}
+
+.victory-gem-collected {
+  opacity: 1;
+  filter: grayscale(0);
+  animation: gemPopIn 0.5s ease-out backwards;
+}
+
+@keyframes gemPopIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.3); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.victory-text-box {
+  border: 3px solid #ffd700;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  max-width: 550px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.victory-text {
+  font-size: 10px;
+  color: #ffd700;
+  line-height: 2.2;
+}
+
+.victory-secret-box {
+  border: 4px solid #39ff14;
+  background: #0a1a0a;
+  padding: 20px;
+  max-width: 500px;
+  box-shadow:
+    0 0 30px rgba(57, 255, 20, 0.3),
+    inset 0 0 30px rgba(57, 255, 20, 0.05);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.victory-secret-label {
+  font-size: 9px;
+  color: #39ff14;
+  line-height: 2;
+  margin-bottom: 12px;
+}
+
+.victory-secret-code {
+  font-size: 20px;
+  color: #fff;
+  text-shadow:
+    0 0 10px #39ff14,
+    0 0 20px rgba(57, 255, 20, 0.5);
+  letter-spacing: 4px;
+  background: rgba(57, 255, 20, 0.1);
+  padding: 12px;
+  border: 2px dashed #39ff14;
+}
+
+.victory-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #111;
+  border: 2px solid #2d70ff;
+  padding: 12px 20px;
+  box-shadow: 0 0 15px rgba(45, 112, 255, 0.3);
+}
+
+.badge-icon {
+  font-size: 24px;
+}
+
+.badge-text {
+  font-size: 9px;
+  color: #2d70ff;
+  text-shadow: 0 0 5px rgba(45, 112, 255, 0.5);
+}
+
+/* Score Display */
+.victory-score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 3px solid #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  padding: 16px 32px;
+}
+
+.victory-score-label {
+  font-size: 9px;
+  color: #ffd700;
+  letter-spacing: 3px;
+}
+
+.victory-score-value {
+  font-size: 24px;
+  color: #39ff14;
+  text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);
+}
+
+.victory-continue-btn {
+  font-size: 12px !important;
+  padding: 14px 32px !important;
+  text-align: center !important;
+  border-color: #39ff14 !important;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Score Breakdown */
+.victory-breakdown {
+  border: 3px solid #ffd700;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 24px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.victory-bd-title {
+  font-size: 10px;
+  color: #ffd700;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.victory-bd-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.victory-bd-label {
+  font-size: 8px;
+  color: #ccc;
+}
+
+.victory-bd-value {
+  font-size: 8px;
+  color: #39ff14;
+  font-variant-numeric: tabular-nums;
+}
+
+.victory-bd-divider {
+  height: 1px;
+  background: rgba(255, 215, 0, 0.3);
+  margin: 8px 0;
+}
+
+.victory-bd-divider-thick {
+  height: 2px;
+  background: #ffd700;
+  margin: 8px 0;
+}
+
+.victory-bd-total-row {
+  padding-top: 8px;
+}
+
+.victory-bd-total-label {
+  color: #ffd700;
+  font-size: 10px;
+}
+
+.victory-bd-total-value {
+  font-size: 18px;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+/* Leaderboard */
+.lb-container {
+  border: 3px solid #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.lb-title {
+  font-size: 10px;
+  color: #ffd700;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  gap: 8px;
+}
+
+.lb-rank {
+  font-size: 9px;
+  color: #ffd700;
+  width: 24px;
+  text-align: right;
+}
+
+.lb-initials {
+  font-size: 10px;
+  color: #39ff14;
+  letter-spacing: 4px;
+  width: 60px;
+}
+
+.lb-dots {
+  flex: 1;
+  font-size: 8px;
+  color: #333;
+  overflow: hidden;
+  letter-spacing: 2px;
+}
+
+.lb-score {
+  font-size: 10px;
+  color: #39ff14;
+  text-align: right;
+  min-width: 80px;
+}
+
+.lb-row-empty .lb-initials,
+.lb-row-empty .lb-score {
+  color: #333;
+}
+
+.lb-row-current {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 5px 8px;
+  margin: 0 -8px;
+}
+
+.lb-row-current .lb-initials,
+.lb-row-current .lb-score {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.victory-logo {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  margin-top: 8px;
+}

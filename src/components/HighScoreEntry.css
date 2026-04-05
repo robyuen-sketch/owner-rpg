@@ -1,0 +1,118 @@
+.hs-screen {
+  min-height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.hs-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.15) 0%, transparent 60%);
+  animation: hsGlowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes hsGlowPulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.hs-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.hs-title {
+  font-size: 20px;
+  color: #ffd700;
+  text-shadow:
+    2px 2px 0 #8b6914,
+    0 0 20px rgba(255, 215, 0, 0.6);
+  letter-spacing: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.hs-score-display {
+  font-size: 32px;
+  color: #39ff14;
+  text-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+.hs-instruction {
+  font-size: 10px;
+  color: #2d70ff;
+  letter-spacing: 2px;
+}
+
+.hs-initials-row {
+  display: flex;
+  gap: 20px;
+}
+
+.hs-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.hs-slot-active .hs-letter {
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  border-color: #ffd700;
+}
+
+.hs-arrow {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-family: 'Press Start 2P', monospace;
+  transition: color 0.1s;
+}
+
+.hs-arrow:hover {
+  color: #ffd700;
+}
+
+.hs-slot-active .hs-arrow {
+  color: #ffd700;
+}
+
+.hs-letter {
+  font-size: 36px;
+  color: #39ff14;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #2d70ff;
+  background: #111;
+  transition: all 0.15s;
+}
+
+.hs-confirm-btn {
+  font-size: 14px !important;
+  padding: 16px 40px !important;
+  text-align: center !important;
+  border-color: #39ff14 !important;
+  margin-top: 8px;
+}
+
+.hs-hint {
+  font-size: 8px;
+  color: #444;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,53 @@
+.dialogue-box {
+  background: #000;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.dialogue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2d70ff33;
+}
+
+.dialogue-realm {
+  font-size: 8px;
+  color: #ffd700;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.dialogue-progress {
+  font-size: 8px;
+  color: #2d70ff;
+}
+
+.dialogue-npc-name {
+  font-size: 10px;
+  color: #2d70ff;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(45, 112, 255, 0.5);
+}
+
+.dialogue-text {
+  font-size: 11px;
+  color: #39ff14;
+  line-height: 2.2;
+  text-align: left;
+  flex: 1;
+}
+
+.dialogue-cursor {
+  color: #39ff14;
+  font-size: 11px;
+}
+
+.dialogue-cursor.blink {
+  animation: blink 1s step-end infinite;
+}

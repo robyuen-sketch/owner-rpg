@@ -1,0 +1,151 @@
+/* ===== GLOBAL RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: #0a0a0a;
+  color: #39ff14;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CRT SCANLINE EFFECT ===== */
+#root::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== GAME CONTAINER ===== */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 8px 16px;
+  gap: 8px;
+  overflow: hidden;
+}
+
+/* ===== GAME MAIN AREA ===== */
+.game-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ===== BLINKING CURSOR ===== */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ===== PIXEL BORDER MIXIN ===== */
+.pixel-border {
+  border: 4px solid #2d70ff;
+  box-shadow:
+    inset 0 0 0 2px #000,
+    0 0 0 2px #000,
+    0 0 20px rgba(45, 112, 255, 0.3);
+}
+
+/* ===== RETRO BUTTON BASE ===== */
+.retro-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 14px 20px;
+  border: 4px solid #2d70ff;
+  background: #111;
+  color: #39ff14;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  position: relative;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.retro-btn:hover:not(:disabled) {
+  background: #1a3a00;
+  color: #fff;
+  box-shadow:
+    0 0 10px rgba(57, 255, 20, 0.5),
+    inset 0 0 10px rgba(57, 255, 20, 0.1);
+  transform: scale(1.02);
+}
+
+.retro-btn:active:not(:disabled) {
+  transform: scale(0.98);
+  background: #2d70ff;
+  color: #000;
+}
+
+.retro-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== SCREEN FLASH ANIMATIONS ===== */
+@keyframes screenShake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-4px); }
+  20% { transform: translateX(4px); }
+  30% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes gemCollect {
+  0% { transform: scale(0) rotate(0deg); }
+  50% { transform: scale(1.3) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}

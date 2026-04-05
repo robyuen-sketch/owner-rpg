@@ -1,0 +1,294 @@
+/* ============================================
+   CUTSCENE - CONTAINER & BASE
+   ============================================ */
+.cs-container {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+  z-index: 100;
+}
+
+.cs-slide {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   TRANSITIONS
+   ============================================ */
+.cs-fade-in {
+  animation: csFadeIn 0.5s ease-out forwards;
+}
+
+.cs-fade-out {
+  animation: csFadeOut 0.5s ease-out forwards;
+}
+
+@keyframes csFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes csFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ============================================
+   BACKGROUND IMAGE
+   ============================================ */
+.cs-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  z-index: 0;
+  background: #000;
+}
+
+/* On landscape/wide screens, let the image fill height instead */
+@media (min-aspect-ratio: 1/1) {
+  .cs-bg-image {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* ============================================
+   VIGNETTE
+   ============================================ */
+.cs-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* ============================================
+   TEXT OVERLAY
+   ============================================ */
+.cs-text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 60%, transparent 100%);
+  padding: 40px 32px 24px;
+  z-index: 10;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cs-slide-counter {
+  font-size: 8px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.cs-narrative-text {
+  font-size: 11px;
+  line-height: 2;
+  text-shadow: 0 0 10px currentColor;
+  max-width: 700px;
+}
+
+/* Cursor */
+.cs-cursor {
+  font-size: 11px;
+  margin-left: 2px;
+}
+
+.cs-cursor.blink {
+  animation: csBlink 0.8s step-end infinite;
+}
+
+@keyframes csBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ============================================
+   BOTTOM PROMPT
+   ============================================ */
+.cs-prompt {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  z-index: 20;
+  animation: csPromptPulse 1.2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+@keyframes csPromptPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================================
+   PARTICLES - BASE
+   ============================================ */
+.cs-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cs-particle {
+  position: absolute;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  animation-delay: var(--delay);
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+}
+
+/* Steam particles */
+.cs-particle-steam {
+  width: 12px !important;
+  height: 12px !important;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation-name: csRiseSteam;
+}
+@keyframes csRiseSteam {
+  0% { bottom: 30%; opacity: 0; transform: scale(0.5); }
+  40% { opacity: 0.4; }
+  100% { bottom: 90%; opacity: 0; transform: scale(2) translateX(10px); }
+}
+
+/* Hearts particles */
+.cs-particle-hearts {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ff69b4;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 105, 180, 0.6);
+  animation-name: csFloatHeart;
+}
+@keyframes csFloatHeart {
+  0% { bottom: 20%; opacity: 0; transform: scale(0) rotate(0deg); }
+  20% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+  50% { opacity: 0.8; transform: scale(1) rotate(-10deg); }
+  100% { bottom: 90%; opacity: 0; transform: scale(0.5) rotate(20deg); }
+}
+
+/* Dust particles */
+.cs-particle-dust {
+  background: rgba(150, 140, 120, 0.4);
+  animation-name: csDriftDust;
+}
+@keyframes csDriftDust {
+  0% { left: -5%; top: 40%; opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.3; }
+  100% { left: 110%; top: 35%; opacity: 0; }
+}
+
+/* Question marks particles */
+.cs-particle-questionmarks {
+  width: 10px !important;
+  height: 10px !important;
+  background: #9b59b6;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+  animation-name: csQuestionFloat;
+}
+.cs-particle-questionmarks::after {
+  content: '?';
+  position: absolute;
+  top: -1px;
+  left: 1px;
+  font-size: 8px;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+}
+@keyframes csQuestionFloat {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); top: 60%; }
+  30% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+  70% { opacity: 0.7; transform: scale(1) rotate(-15deg); top: 20%; }
+}
+
+/* Drain coins particles */
+.cs-particle-draincoins {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.5), inset -2px -2px 0 #b8860b;
+  animation-name: csDrainCoin;
+}
+@keyframes csDrainCoin {
+  0% { top: 30%; opacity: 1; transform: scaleX(1); }
+  30% { opacity: 1; transform: scaleX(0.3); }
+  60% { opacity: 0.6; transform: scaleX(1); }
+  100% { top: 105%; opacity: 0; transform: scaleX(0.5); }
+}
+
+/* Rain particles */
+.cs-particle-rain {
+  width: 2px !important;
+  height: 12px !important;
+  background: rgba(100, 150, 255, 0.6);
+  border-radius: 0;
+  animation-name: csFallRain;
+}
+@keyframes csFallRain {
+  0% { top: -5%; opacity: 0.8; }
+  100% { top: 105%; opacity: 0.2; }
+}
+
+/* Sparkles particles */
+.cs-particle-sparkles {
+  background: #ffd700;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+  animation-name: csSparkleFloat;
+}
+@keyframes csSparkleFloat {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); top: 70%; }
+  50% { opacity: 1; transform: scale(1.5) rotate(180deg); top: 20%; }
+}
+
+/* Stars particles */
+.cs-particle-stars {
+  background: #fff;
+  box-shadow: 0 0 4px #fff;
+  animation-name: csTwinkle;
+}
+@keyframes csTwinkle {
+  0%, 100% { opacity: 0.2; top: var(--x); }
+  50% { opacity: 1; }
+}
+
+/* Lanterns particles */
+.cs-particle-lanterns {
+  width: 6px !important;
+  height: 8px !important;
+  background: #ff8c00;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+  animation-name: csLanternSway;
+}
+@keyframes csLanternSway {
+  0%, 100% { transform: translateX(0) rotate(0deg); top: 15%; }
+  50% { transform: translateX(5px) rotate(5deg); top: 18%; }
+}

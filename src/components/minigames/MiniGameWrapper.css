@@ -1,0 +1,182 @@
+/* ============================================
+   MINI-GAME WRAPPER
+   ============================================ */
+.mg-container {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  z-index: 100;
+}
+
+/* ============================================
+   OVERLAYS
+   ============================================ */
+.mg-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 20;
+  animation: mgFadeIn 0.3s ease-out;
+}
+
+.mg-overlay-transparent {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes mgFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   INTRO SCREEN
+   ============================================ */
+.mg-realm-transition {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.mg-from-realm {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.mg-arrow {
+  font-size: 16px;
+  color: #ffd700;
+  margin: 8px 0;
+  animation: mgBounce 0.8s ease-in-out infinite;
+}
+
+@keyframes mgBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.mg-to-realm {
+  font-size: 12px;
+  color: #39ff14;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.mg-game-name {
+  font-size: 20px;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  margin-bottom: 16px;
+  animation: mgPulse 1s ease-in-out infinite;
+}
+
+@keyframes mgPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.mg-difficulty {
+  font-size: 14px;
+  color: #ff8c00;
+  letter-spacing: 4px;
+}
+
+/* ============================================
+   COUNTDOWN
+   ============================================ */
+.mg-countdown {
+  font-size: 48px;
+  color: #ffd700;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  animation: mgCountPop 0.5s ease-out;
+}
+
+@keyframes mgCountPop {
+  0% { transform: scale(2); opacity: 0; }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   TIME'S UP
+   ============================================ */
+.mg-times-up {
+  font-size: 28px;
+  color: #ff3333;
+  text-shadow: 0 0 20px rgba(255, 51, 51, 0.8);
+  animation: mgShake 0.5s ease-out;
+}
+
+@keyframes mgShake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-8px); }
+  20% { transform: translateX(8px); }
+  30% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  50% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+}
+
+/* ============================================
+   SUMMARY
+   ============================================ */
+.mg-summary {
+  text-align: center;
+}
+
+.mg-summary-title {
+  font-size: 14px;
+  color: #2d70ff;
+  margin-bottom: 24px;
+}
+
+.mg-summary-label {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.mg-summary-raw {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.mg-summary-multiplier {
+  font-size: 14px;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  margin-bottom: 8px;
+  animation: mgPulse 1s ease-in-out infinite;
+}
+
+.mg-summary-score {
+  font-size: 28px;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  margin-bottom: 32px;
+  animation: mgScoreReveal 0.8s ease-out;
+}
+
+@keyframes mgScoreReveal {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.mg-continue-btn {
+  display: inline-block;
+  text-align: center;
+  animation: mgBtnPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes mgBtnPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
+}

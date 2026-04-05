@@ -1,0 +1,1045 @@
+/* ============================================
+   SCENE PANEL - BASE
+   ============================================ */
+.scene-panel {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #2d70ff;
+  box-shadow:
+    inset 0 0 0 2px #000,
+    0 0 0 2px #000,
+    0 0 20px rgba(45, 112, 255, 0.3);
+  image-rendering: pixelated;
+  animation: sceneEnter 0.6s ease-out;
+}
+
+@keyframes sceneEnter {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Background image (for realms with art assets) */
+.scene-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+.scene-has-bg {
+  image-rendering: auto;
+}
+
+/* Background layers */
+.scene-bg-far,
+.scene-bg-mid,
+.scene-bg-near,
+.scene-ground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Vignette overlay */
+.scene-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Realm label */
+.scene-realm-label {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  z-index: 6;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   PARTICLES - BASE
+   ============================================ */
+.scene-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.particle {
+  position: absolute;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  animation-delay: var(--delay);
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+}
+
+/* Fireflies */
+.particle-fireflies {
+  background: #aaff44;
+  box-shadow: 0 0 6px 2px rgba(170, 255, 68, 0.6);
+  animation-name: firefly;
+}
+@keyframes firefly {
+  0%, 100% { top: 20%; opacity: 0; }
+  20% { opacity: 1; }
+  50% { top: 40%; opacity: 0.8; transform: translateX(15px); }
+  80% { opacity: 0.4; }
+}
+
+/* Torch sparks */
+.particle-torchsparks {
+  background: #ff6600;
+  box-shadow: 0 0 4px 1px rgba(255, 102, 0, 0.5);
+  animation-name: torchspark;
+}
+@keyframes torchspark {
+  0% { bottom: 30%; opacity: 1; transform: translateX(0); }
+  100% { bottom: 80%; opacity: 0; transform: translateX(calc(var(--i) * 2px - 10px)); }
+}
+
+/* Floating coins */
+.particle-coins {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5), inset -2px -2px 0 #b8860b;
+  animation-name: floatCoin;
+}
+@keyframes floatCoin {
+  0%, 100% { top: 60%; opacity: 0; transform: scaleX(1); }
+  20% { opacity: 1; }
+  50% { top: 20%; transform: scaleX(0.3); }
+  80% { opacity: 0.5; transform: scaleX(1); }
+}
+
+/* Clouds */
+.particle-clouds {
+  width: 40px !important;
+  height: 16px !important;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  animation-name: driftCloud;
+}
+@keyframes driftCloud {
+  0% { left: -10%; opacity: 0.3; }
+  50% { opacity: 0.5; }
+  100% { left: 110%; opacity: 0.3; }
+}
+
+/* Stars */
+.particle-stars {
+  background: #fff;
+  box-shadow: 0 0 4px #fff;
+  animation-name: twinkle;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; top: var(--x); }
+  50% { opacity: 1; }
+}
+
+/* Lanterns */
+.particle-lanterns {
+  width: 6px !important;
+  height: 8px !important;
+  background: #ff8c00;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+  animation-name: lanternSway;
+}
+@keyframes lanternSway {
+  0%, 100% { transform: translateX(0) rotate(0deg); top: 15%; }
+  50% { transform: translateX(5px) rotate(5deg); top: 18%; }
+}
+
+/* Sand */
+.particle-sand {
+  background: #d2b48c;
+  opacity: 0.5;
+  animation-name: blowSand;
+}
+@keyframes blowSand {
+  0% { left: -5%; top: 50%; opacity: 0; }
+  30% { opacity: 0.6; }
+  100% { left: 110%; top: 45%; opacity: 0; }
+}
+
+/* Steam */
+.particle-steam {
+  width: 12px !important;
+  height: 12px !important;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation-name: riseSteam;
+}
+@keyframes riseSteam {
+  0% { bottom: 30%; opacity: 0; transform: scale(0.5); }
+  40% { opacity: 0.4; }
+  100% { bottom: 90%; opacity: 0; transform: scale(2) translateX(10px); }
+}
+
+/* Data bits */
+.particle-data {
+  width: 3px !important;
+  height: 10px !important;
+  background: #00bfff;
+  box-shadow: 0 0 4px rgba(0, 191, 255, 0.5);
+  border-radius: 0;
+  animation-name: dataFall;
+}
+@keyframes dataFall {
+  0% { top: -5%; opacity: 1; }
+  100% { top: 105%; opacity: 0.2; }
+}
+
+/* Sparkles */
+.particle-sparkles {
+  background: #ffd700;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+  animation-name: sparkleFloat2;
+}
+@keyframes sparkleFloat2 {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); top: 70%; }
+  50% { opacity: 1; transform: scale(1.5) rotate(180deg); top: 20%; }
+}
+
+/* Crystals */
+.particle-crystals {
+  width: 4px !important;
+  height: 8px !important;
+  background: linear-gradient(to bottom, #ff69b4, #9b59b6);
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+  animation-name: crystalGlow;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+@keyframes crystalGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ============================================
+   CHARACTERS
+   ============================================ */
+.scene-characters {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 60px;
+  z-index: 4;
+}
+
+.character {
+  position: relative;
+  image-rendering: pixelated;
+}
+
+/* Speech indicator over NPC */
+.scene-speech-indicator {
+  position: absolute;
+  bottom: 130px;
+  right: 100px;
+  display: flex;
+  gap: 4px;
+  z-index: 4;
+}
+
+.speech-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  animation: speechBounce 1.2s ease-in-out infinite;
+}
+.speech-dot:nth-child(2) { animation-delay: 0.2s; }
+.speech-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes speechBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ============================================
+   ANA AVATAR (image replacement)
+   ============================================ */
+.scene-ana-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  box-shadow:
+    0 0 12px rgba(255, 215, 0, 0.4),
+    0 0 24px rgba(255, 215, 0, 0.2);
+  animation: anaSceneIdle 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes anaSceneIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ============================================
+   NPC CHARACTERS (CSS pixel art)
+   ============================================ */
+.character-npc {
+  width: 48px;
+  height: 88px;
+  position: relative;
+  animation: npcFloat 3s ease-in-out infinite;
+}
+
+@keyframes npcFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* --- THE SAGE OF SALES --- */
+.npc-sage::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  width: 32px;
+  height: 20px;
+  background: #f5c6a0;
+  border-radius: 50%;
+  border: 2px solid #d4a373;
+}
+.npc-sage::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 4px;
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(to bottom, #8b4513, #6b3410);
+  border-radius: 6px 6px 0 0;
+  border: 2px solid #5a2d0e;
+}
+.npc-sage {
+  /* Beard via box-shadow (white patch on face) */
+}
+/* Beard */
+.npc-sage .npc-detail-1,
+.npc-sage .npc-detail-2 { display: none; }
+
+/* --- THE URL KEEPER --- */
+.npc-urlkeeper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 36px;
+  height: 72px;
+  background: linear-gradient(to bottom, #1a0a2e, #2d1b4e);
+  border-radius: 12px 12px 4px 4px;
+  border: 2px solid #4a2d7a;
+}
+.npc-urlkeeper::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 8px;
+  height: 8px;
+  background: #39ff14;
+  border-radius: 50%;
+  box-shadow: 10px 0 0 #39ff14, 0 0 10px rgba(57,255,20,0.5), 10px 0 10px rgba(57,255,20,0.5);
+}
+.npc-urlkeeper {
+  /* Chain accessory via bottom border */
+  border-bottom: 4px solid #666;
+}
+
+/* --- THE COIN MASTER --- */
+.npc-coinmaster::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 22px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-coinmaster::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 6px;
+  width: 36px;
+  height: 44px;
+  background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
+  border-radius: 2px;
+  border: 2px solid #444;
+}
+.npc-coinmaster {
+  /* Gold coins at bottom */
+  border-bottom: 6px solid #ffd700;
+  box-shadow: 0 4px 0 #b8860b;
+}
+
+/* --- THE GRAND CONNECTOR --- */
+.npc-connector::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  width: 28px;
+  height: 20px;
+  background: #c0c0c0;
+  border-radius: 4px;
+  border: 2px solid #888;
+}
+.npc-connector::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 6px;
+  width: 36px;
+  height: 44px;
+  background: linear-gradient(to bottom, #1a3a2e, #0d2618);
+  border-radius: 4px;
+  border: 2px solid #39ff14;
+  box-shadow: inset 0 0 10px rgba(57,255,20,0.2);
+}
+
+/* --- THE ORACLE OF GOOGLE --- */
+.npc-oracle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 36px;
+  height: 68px;
+  background: linear-gradient(to bottom, #1a1a4e, #0d0d2e);
+  border-radius: 10px 10px 4px 4px;
+  border: 2px solid #4285f4;
+}
+.npc-oracle::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 14px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #7ec8ff, #4285f4, #1a1a4e);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(66, 133, 244, 0.6);
+  animation: orbPulse 2s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(66, 133, 244, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(66, 133, 244, 0.8); }
+}
+
+/* --- THE TOWN CRIER --- */
+.npc-crier::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 22px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-crier::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 4px;
+  width: 40px;
+  height: 44px;
+  background: linear-gradient(to bottom, #8b0000, #660000);
+  border-radius: 2px;
+  border: 2px solid #aa0000;
+}
+.npc-crier {
+  /* Megaphone */
+  box-shadow: 40px 26px 0 0 #ff6347, 44px 24px 0 0 #ff6347, 48px 22px 0 0 #ff6347;
+}
+
+/* --- THE COURIER --- */
+.npc-courier::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 20px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-courier::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 4px;
+  width: 40px;
+  height: 46px;
+  background: linear-gradient(to bottom, #4a6741, #3a5431);
+  border-radius: 4px;
+  border: 2px solid #5a7a50;
+}
+.npc-courier {
+  /* Delivery cap */
+  border-top: 6px solid #d2691e;
+}
+
+/* --- THE RECIPE MASTER --- */
+.npc-recipemaster::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 28px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+.npc-recipemaster::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 6px;
+  width: 36px;
+  height: 44px;
+  background: #fff;
+  border-radius: 2px;
+  border: 2px solid #ddd;
+}
+
+/* --- THE TECH SMITH --- */
+.npc-techsmith::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 22px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-techsmith::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 4px;
+  width: 40px;
+  height: 44px;
+  background: linear-gradient(to bottom, #2a3a4a, #1a2a3a);
+  border-radius: 2px;
+  border: 2px solid #00bfff;
+  box-shadow: inset 0 0 8px rgba(0, 191, 255, 0.2);
+}
+.npc-techsmith {
+  /* Goggles */
+  border-top: 4px solid #00bfff;
+}
+
+/* --- THE MERCHANT OF LOYALTY --- */
+.npc-merchant::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 22px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-merchant::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 4px;
+  width: 40px;
+  height: 44px;
+  background: linear-gradient(to bottom, #8b6914, #6b4f10);
+  border-radius: 4px;
+  border: 2px solid #ffa500;
+}
+.npc-merchant {
+  /* Medal */
+  box-shadow: 24px -4px 0 0 #ffd700, 24px -8px 0 0 #ff8c00;
+}
+
+/* --- EVA THE GUIDE --- */
+.npc-eva::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 28px;
+  height: 22px;
+  background: #f5c6a0;
+  border-radius: 4px;
+  border: 2px solid #d4a373;
+}
+.npc-eva::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 6px;
+  width: 36px;
+  height: 40px;
+  background: linear-gradient(to bottom, #6a3d7a, #4a2d5a);
+  border-radius: 4px;
+  border: 2px solid #ff69b4;
+}
+/* Mini dachshund */
+.npc-eva {
+  border-bottom: 0;
+}
+
+/* ============================================
+   SCENE BACKGROUNDS
+   ============================================ */
+
+/* --- FOREST --- */
+.scene-forest {
+  background: linear-gradient(
+    to bottom,
+    #0a1a0a 0%,
+    #0d2a0d 30%,
+    #133a13 60%,
+    #1a4a1a 100%
+  );
+}
+.scene-forest .scene-bg-far {
+  background:
+    /* Distant trees */
+    radial-gradient(ellipse 30px 60px at 15% 60%, #0a2a0a 40%, transparent 41%),
+    radial-gradient(ellipse 25px 50px at 30% 65%, #0d2d0d 40%, transparent 41%),
+    radial-gradient(ellipse 35px 70px at 50% 55%, #0a2a0a 40%, transparent 41%),
+    radial-gradient(ellipse 28px 55px at 70% 62%, #0d2d0d 40%, transparent 41%),
+    radial-gradient(ellipse 32px 65px at 88% 58%, #0a2a0a 40%, transparent 41%);
+}
+.scene-forest .scene-bg-mid {
+  background:
+    /* Mid trees */
+    radial-gradient(ellipse 40px 80px at 10% 55%, #1a5a1a 40%, transparent 41%),
+    radial-gradient(ellipse 35px 70px at 38% 60%, #1a6a1a 35%, transparent 36%),
+    radial-gradient(ellipse 45px 85px at 62% 52%, #1a5a1a 38%, transparent 39%),
+    radial-gradient(ellipse 38px 75px at 85% 58%, #1a6a1a 36%, transparent 37%);
+}
+.scene-forest .scene-bg-near {
+  background:
+    /* Foreground bushes */
+    radial-gradient(ellipse 50px 30px at 5% 90%, #2a7a2a 50%, transparent 51%),
+    radial-gradient(ellipse 45px 25px at 95% 88%, #2a7a2a 50%, transparent 51%),
+    /* Tree trunks */
+    linear-gradient(to bottom, transparent 50%, #3d2b1f 50%, #3d2b1f 55%, transparent 55%) no-repeat 10% 0 / 8px 100%,
+    linear-gradient(to bottom, transparent 45%, #3d2b1f 45%, #3d2b1f 50%, transparent 50%) no-repeat 38% 0 / 10px 100%,
+    linear-gradient(to bottom, transparent 42%, #3d2b1f 42%, #3d2b1f 48%, transparent 48%) no-repeat 62% 0 / 12px 100%,
+    linear-gradient(to bottom, transparent 48%, #3d2b1f 48%, #3d2b1f 52%, transparent 52%) no-repeat 85% 0 / 8px 100%;
+}
+.scene-forest .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #2a5a1a, #1a3a0a);
+  border-top: 3px solid #3a7a2a;
+}
+
+/* --- DUNGEON --- */
+.scene-dungeon {
+  background: linear-gradient(
+    to bottom,
+    #0a0514 0%,
+    #15082a 40%,
+    #1a0a30 70%,
+    #0d0620 100%
+  );
+}
+.scene-dungeon .scene-bg-far {
+  background:
+    /* Stone wall pattern */
+    repeating-linear-gradient(
+      90deg,
+      rgba(100, 60, 140, 0.15) 0px,
+      rgba(100, 60, 140, 0.15) 40px,
+      rgba(60, 30, 100, 0.1) 40px,
+      rgba(60, 30, 100, 0.1) 42px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(100, 60, 140, 0.12) 0px,
+      rgba(100, 60, 140, 0.12) 30px,
+      rgba(60, 30, 100, 0.08) 30px,
+      rgba(60, 30, 100, 0.08) 32px
+    );
+}
+.scene-dungeon .scene-bg-mid {
+  background:
+    /* Chains */
+    linear-gradient(to bottom, #444 0%, #333 100%) no-repeat 20% 0 / 3px 45%,
+    linear-gradient(to bottom, #444 0%, #333 100%) no-repeat 75% 0 / 3px 55%,
+    /* Torch brackets */
+    radial-gradient(circle 6px at 20% 48%, #ff6600 50%, transparent 51%),
+    radial-gradient(circle 6px at 75% 58%, #ff6600 50%, transparent 51%),
+    radial-gradient(circle 10px at 20% 46%, rgba(255, 102, 0, 0.3) 50%, transparent 51%),
+    radial-gradient(circle 10px at 75% 56%, rgba(255, 102, 0, 0.3) 50%, transparent 51%);
+}
+.scene-dungeon .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #1a0a2e, #0d0518);
+  border-top: 3px solid #3a1a5a;
+}
+
+/* --- SANCTUARY --- */
+.scene-sanctuary {
+  background: linear-gradient(
+    to bottom,
+    #2a1a00 0%,
+    #3a2800 30%,
+    #4a3400 60%,
+    #3a2800 100%
+  );
+}
+.scene-sanctuary .scene-bg-far {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255, 215, 0, 0.15) 0%, transparent 60%);
+}
+.scene-sanctuary .scene-bg-mid {
+  background:
+    /* Columns */
+    linear-gradient(to bottom, #d4a960 0%, #b8922a 100%) no-repeat 12% 15% / 16px 70%,
+    linear-gradient(to bottom, #d4a960 0%, #b8922a 100%) no-repeat 88% 15% / 16px 70%,
+    /* Column caps */
+    linear-gradient(to bottom, #e8c66a, #d4a960) no-repeat 8% 12% / 24px 10px,
+    linear-gradient(to bottom, #e8c66a, #d4a960) no-repeat 84% 12% / 24px 10px,
+    /* Arch */
+    radial-gradient(ellipse 200px 80px at 50% 14%, rgba(212, 169, 96, 0.3) 48%, transparent 50%);
+}
+.scene-sanctuary .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #8b7530, #6b5520);
+  border-top: 3px solid #b8922a;
+}
+
+/* --- ISLES --- */
+.scene-isles {
+  background: linear-gradient(
+    to bottom,
+    #0a2a3a 0%,
+    #1a4a5a 30%,
+    #2a6a7a 60%,
+    #1a4a5a 100%
+  );
+}
+.scene-isles .scene-bg-far {
+  background:
+    /* Floating islands */
+    radial-gradient(ellipse 60px 20px at 20% 35%, #3a6a2a 50%, transparent 51%),
+    radial-gradient(ellipse 80px 25px at 75% 25%, #3a6a2a 50%, transparent 51%),
+    radial-gradient(ellipse 50px 15px at 50% 45%, #2a5a1a 50%, transparent 51%),
+    /* Island undersides */
+    radial-gradient(ellipse 55px 30px at 20% 38%, #5a4a3a 50%, transparent 51%),
+    radial-gradient(ellipse 75px 35px at 75% 28%, #5a4a3a 50%, transparent 51%);
+}
+.scene-isles .scene-bg-mid {
+  background:
+    /* Bridge */
+    linear-gradient(to right, transparent 22%, rgba(139, 105, 20, 0.5) 30%, rgba(139, 105, 20, 0.5) 70%, transparent 78%) no-repeat 0 32% / 100% 4px;
+}
+.scene-isles .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #2a6a3a, #1a4a2a);
+  border-top: 3px solid #3a8a4a;
+}
+
+/* --- SUMMIT --- */
+.scene-summit {
+  background: linear-gradient(
+    to bottom,
+    #050510 0%,
+    #0a0a20 30%,
+    #151530 60%,
+    #2a2a50 100%
+  );
+}
+.scene-summit .scene-bg-far {
+  background:
+    /* Stars handled by particles */
+    radial-gradient(circle 1px at 10% 15%, #fff 50%, transparent 51%),
+    radial-gradient(circle 1px at 25% 8%, #fff 50%, transparent 51%),
+    radial-gradient(circle 1px at 45% 20%, #fff 50%, transparent 51%),
+    radial-gradient(circle 1px at 60% 5%, #fff 50%, transparent 51%),
+    radial-gradient(circle 1px at 80% 18%, #fff 50%, transparent 51%),
+    radial-gradient(circle 1px at 90% 10%, #fff 50%, transparent 51%);
+}
+.scene-summit .scene-bg-mid {
+  background:
+    /* Mountain */
+    linear-gradient(135deg, transparent 35%, #3a3a6a 35%, #3a3a6a 36%, transparent 36%),
+    linear-gradient(225deg, transparent 35%, #3a3a6a 35%, #3a3a6a 36%, transparent 36%),
+    /* Snow cap */
+    radial-gradient(ellipse 40px 20px at 50% 60%, #fff 40%, transparent 41%),
+    /* Cloud banks below */
+    radial-gradient(ellipse 120px 20px at 30% 85%, rgba(255,255,255,0.1) 50%, transparent 51%),
+    radial-gradient(ellipse 100px 15px at 70% 90%, rgba(255,255,255,0.08) 50%, transparent 51%);
+}
+.scene-summit .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #3a3a6a, #2a2a4a);
+  border-top: 3px solid #5a5a8a;
+}
+
+/* --- MARKETPLACE --- */
+.scene-marketplace {
+  background: linear-gradient(
+    to bottom,
+    #2a1500 0%,
+    #3a2000 20%,
+    #4a2a00 50%,
+    #3a2000 100%
+  );
+}
+.scene-marketplace .scene-bg-far {
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 140, 0, 0.2) 0%, transparent 60%);
+}
+.scene-marketplace .scene-bg-mid {
+  background:
+    /* Market stalls */
+    linear-gradient(to bottom, #8b4513 0%, #6b3410 100%) no-repeat 8% 25% / 60px 55%,
+    linear-gradient(to bottom, #8b4513 0%, #6b3410 100%) no-repeat 78% 20% / 65px 60%,
+    /* Awnings */
+    linear-gradient(to bottom, #cc3333, #aa2222) no-repeat 3% 22% / 72px 10px,
+    linear-gradient(to bottom, #3366cc, #2255aa) no-repeat 73% 17% / 78px 10px,
+    /* Hanging banner */
+    linear-gradient(to bottom, #ffa500, #ff8c00) no-repeat 48% 10% / 30px 25px;
+}
+.scene-marketplace .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #6b4520, #4a3010);
+  border-top: 3px solid #8b6530;
+}
+
+/* --- DESERT --- */
+.scene-desert {
+  background: linear-gradient(
+    to bottom,
+    #ff8c42 0%,
+    #e87a30 20%,
+    #d4a060 50%,
+    #c4904a 100%
+  );
+}
+.scene-desert .scene-bg-far {
+  background:
+    /* Sun */
+    radial-gradient(circle 30px at 80% 15%, #fff5cc 30%, rgba(255,245,204,0.3) 60%, transparent 61%),
+    /* Heat shimmer */
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.scene-desert .scene-bg-mid {
+  background:
+    /* Dunes */
+    radial-gradient(ellipse 200px 40px at 30% 70%, #c49040 50%, transparent 51%),
+    radial-gradient(ellipse 250px 50px at 70% 65%, #b8843a 50%, transparent 51%),
+    /* Cactus silhouettes */
+    linear-gradient(to bottom, #5a7a3a, #4a6a2a) no-repeat 15% 40% / 6px 30px,
+    radial-gradient(ellipse 12px 6px at 16% 40%, #5a7a3a 50%, transparent 51%),
+    linear-gradient(to bottom, #5a7a3a, #4a6a2a) no-repeat 90% 45% / 5px 25px;
+}
+.scene-desert .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #d4a060, #b8843a);
+  border-top: 3px solid #e8b470;
+}
+
+/* --- MOUNTAINS --- */
+.scene-mountains {
+  background: linear-gradient(
+    to bottom,
+    #1a2a1a 0%,
+    #2a3a1a 30%,
+    #3a4a2a 60%,
+    #2a3a1a 100%
+  );
+}
+.scene-mountains .scene-bg-far {
+  background:
+    /* Mountain peaks */
+    linear-gradient(140deg, transparent 30%, #4a5a3a 30%, #4a5a3a 31%, transparent 31%),
+    linear-gradient(220deg, transparent 25%, #3a4a2a 25%, #3a4a2a 26%, transparent 26%),
+    linear-gradient(150deg, transparent 40%, #5a6a4a 40%, #5a6a4a 41%, transparent 41%);
+}
+.scene-mountains .scene-bg-mid {
+  background:
+    /* Rising steam / cooking pots */
+    radial-gradient(circle 15px at 40% 70%, #666 50%, transparent 51%),
+    radial-gradient(circle 12px at 60% 72%, #555 50%, transparent 51%),
+    /* Herb leaves */
+    radial-gradient(ellipse 10px 15px at 25% 55%, #5a8a3a 50%, transparent 51%),
+    radial-gradient(ellipse 8px 12px at 72% 50%, #5a8a3a 50%, transparent 51%);
+}
+.scene-mountains .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #3a5a2a, #2a4a1a);
+  border-top: 3px solid #5a7a3a;
+}
+
+/* --- HARDWARE --- */
+.scene-hardware {
+  background: linear-gradient(
+    to bottom,
+    #0a0a1a 0%,
+    #0d1020 30%,
+    #101525 60%,
+    #0a0a1a 100%
+  );
+}
+.scene-hardware .scene-bg-far {
+  background:
+    /* Circuit pattern */
+    repeating-linear-gradient(90deg, transparent 0px, transparent 30px, rgba(0,191,255,0.08) 30px, rgba(0,191,255,0.08) 31px),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 30px, rgba(0,191,255,0.08) 30px, rgba(0,191,255,0.08) 31px),
+    /* Circuit nodes */
+    radial-gradient(circle 3px at 30px 30px, rgba(0,191,255,0.15) 50%, transparent 51%),
+    radial-gradient(circle 3px at 60px 60px, rgba(0,191,255,0.15) 50%, transparent 51%);
+}
+.scene-hardware .scene-bg-mid {
+  background:
+    /* Server racks */
+    linear-gradient(to bottom, #1a2a3a, #0d1a2a) no-repeat 5% 20% / 30px 65%,
+    linear-gradient(to bottom, #1a2a3a, #0d1a2a) no-repeat 92% 15% / 28px 70%,
+    /* LED lights on racks */
+    radial-gradient(circle 2px at 12% 35%, #00ff00 50%, transparent 51%),
+    radial-gradient(circle 2px at 12% 45%, #00bfff 50%, transparent 51%),
+    radial-gradient(circle 2px at 12% 55%, #00ff00 50%, transparent 51%),
+    radial-gradient(circle 2px at 95% 30%, #ff3333 50%, transparent 51%),
+    radial-gradient(circle 2px at 95% 40%, #00bfff 50%, transparent 51%),
+    radial-gradient(circle 2px at 95% 50%, #00ff00 50%, transparent 51%);
+}
+.scene-hardware .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #1a1a2a, #0a0a1a);
+  border-top: 3px solid #2a2a4a;
+}
+
+/* --- LABYRINTH --- */
+.scene-labyrinth {
+  background: linear-gradient(
+    to bottom,
+    #1a1200 0%,
+    #2a2000 30%,
+    #3a2a00 60%,
+    #2a2000 100%
+  );
+}
+.scene-labyrinth .scene-bg-far {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+}
+.scene-labyrinth .scene-bg-mid {
+  background:
+    /* Maze walls */
+    linear-gradient(to right, #6b5020, #5a4018) no-repeat 10% 30% / 80px 6px,
+    linear-gradient(to bottom, #6b5020, #5a4018) no-repeat 10% 30% / 6px 50px,
+    linear-gradient(to right, #6b5020, #5a4018) no-repeat 60% 20% / 100px 6px,
+    linear-gradient(to bottom, #6b5020, #5a4018) no-repeat 60% 20% / 6px 60px,
+    linear-gradient(to right, #6b5020, #5a4018) no-repeat 30% 60% / 90px 6px,
+    /* Treasure glow */
+    radial-gradient(circle 12px at 50% 55%, rgba(255, 215, 0, 0.3) 50%, transparent 51%);
+}
+.scene-labyrinth .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #4a3a10, #3a2a00);
+  border-top: 3px solid #6b5a20;
+}
+
+/* --- CAVE --- */
+.scene-cave {
+  background: linear-gradient(
+    to bottom,
+    #1a0a2a 0%,
+    #2a1040 30%,
+    #1a0a2a 70%,
+    #0d0518 100%
+  );
+}
+.scene-cave .scene-bg-far {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+}
+.scene-cave .scene-bg-mid {
+  background:
+    /* Stalactites */
+    linear-gradient(to bottom, #3a1a5a, transparent) no-repeat 15% 0 / 10px 40px,
+    linear-gradient(to bottom, #4a2a6a, transparent) no-repeat 35% 0 / 8px 55px,
+    linear-gradient(to bottom, #3a1a5a, transparent) no-repeat 55% 0 / 12px 35px,
+    linear-gradient(to bottom, #4a2a6a, transparent) no-repeat 80% 0 / 9px 50px,
+    /* Crystal formations */
+    linear-gradient(135deg, #ff69b4, #9b59b6) no-repeat 25% 65% / 8px 20px,
+    linear-gradient(135deg, #9b59b6, #ff69b4) no-repeat 70% 60% / 6px 18px,
+    linear-gradient(135deg, #ff69b4, #e91e9b) no-repeat 45% 70% / 10px 22px;
+}
+.scene-cave .scene-bg-near {
+  background:
+    /* Crystal glow */
+    radial-gradient(circle 15px at 25% 70%, rgba(255, 105, 180, 0.3) 50%, transparent 51%),
+    radial-gradient(circle 12px at 70% 65%, rgba(155, 89, 182, 0.3) 50%, transparent 51%),
+    radial-gradient(circle 18px at 45% 75%, rgba(255, 105, 180, 0.2) 50%, transparent 51%);
+}
+.scene-cave .scene-ground {
+  top: auto;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, #2a1040, #1a0a2a);
+  border-top: 3px solid #4a2060;
+}
