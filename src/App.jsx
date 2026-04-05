@@ -113,24 +113,51 @@ function App() {
       if (nextIndex >= gameScript.length) {
         setGamePhase('victory')
       } else {
+        const completedRealm = gameScript[currentQuestionIndex].realm
+        const nextRealm = gameScript[nextIndex]?.realm
+        const isRealmTransition = completedRealm !== nextRealm
         const miniGame = getMiniGameForTransition(currentQuestionIndex)
-        if (miniGame) {
-          const completedRealm = gameScript[currentQuestionIndex].realm
+
+        if (isRealmTransition && miniGame) {
+          // Realm transition WITH a mini-game
           setCompletedRealmName(completedRealm)
           setCurrentQuestionIndex(nextIndex)
 
-          // Some realms show completion cutscene BEFORE mini-game (e.g. vampire chase before Jungle Run)
           const completionSlides = getRealmCutscene(completedRealm, 'completion')
           if (completionSlides && isCompletionBeforeMiniGame(completedRealm)) {
             setRealmCutsceneData(completionSlides)
-            setPendingMiniGame(miniGame) // mini-game plays after cutscene
+            setPendingMiniGame(miniGame)
             setGamePhase('realm_cutscene')
           } else {
-            // Default: go straight to mini-game, cutscenes play after
             setMiniGameData(miniGame)
             setGamePhase('minigame')
           }
+        } else if (isRealmTransition) {
+          // Realm transition WITHOUT a mini-game — still show cutscenes
+          setCompletedRealmName(completedRealm)
+          setCurrentQuestionIndex(nextIndex)
+
+          const completionSlides = getRealmCutscene(completedRealm, 'completion')
+          const introSlides = nextRealm ? getRealmCutscene(nextRealm, 'intro') : null
+
+          if (completionSlides && introSlides) {
+            setRealmCutsceneData(completionSlides)
+            setPendingMiniGame(introSlides)
+            setGamePhase('realm_cutscene')
+          } else if (completionSlides) {
+            setRealmCutsceneData(completionSlides)
+            setPendingMiniGame(null)
+            setGamePhase('realm_cutscene')
+          } else if (introSlides) {
+            setRealmCutsceneData(introSlides)
+            setPendingMiniGame(null)
+            setGamePhase('realm_cutscene')
+          } else {
+            setQuestionStartTime(Date.now())
+            setGamePhase('playing')
+          }
         } else {
+          // Same realm, just advance to next question
           setCurrentQuestionIndex(nextIndex)
           setQuestionStartTime(Date.now())
           setGamePhase('playing')
