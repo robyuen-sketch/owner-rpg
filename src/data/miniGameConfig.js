@@ -12,10 +12,8 @@ function buildTransitionIndices() {
 
 export const TRANSITION_INDICES = buildTransitionIndices()
 
-const GAME_CYCLE = ['pacman', 'space_commanders', 'snake']
-
-// Override specific transitions with custom mini-games
-const TRANSITION_OVERRIDES = {
+// Only these transitions have mini-games; all others skip straight to cutscenes
+const TRANSITION_GAMES = {
   0: 'jungle_run',    // After Top of Funnel → Ana escapes the Cullens
   1: 'castlevania',   // After Domain Dungeon → Ana fights through the dungeon
   2: 'pirate_ship',   // After Stripe Sanctuary → Ana sails the Payment Line
@@ -28,7 +26,8 @@ export function getMiniGameForTransition(questionIndex) {
   const transitionIdx = TRANSITION_INDICES.indexOf(questionIndex)
   if (transitionIdx === -1) return null
 
-  const gameType = TRANSITION_OVERRIDES[transitionIdx] || GAME_CYCLE[transitionIdx % 3]
+  const gameType = TRANSITION_GAMES[transitionIdx]
+  if (!gameType) return null // No mini-game for this transition
 
   return {
     gameType,
