@@ -87,7 +87,7 @@ function Victory({ gems, totalGems, score, onContinue, scoreBreakdown, leaderboa
             To prove your worth to the Enablement team,
             present this Secret Code:
           </p>
-          <p className="victory-secret-code">20 CHICKEN NUGGETS</p>
+          <p className="victory-secret-code">676767676767</p>
         </div>
 
         {/* Score Breakdown (final screen only) */}
@@ -139,6 +139,12 @@ function Victory({ gems, totalGems, score, onContinue, scoreBreakdown, leaderboa
         {/* Leaderboard (final screen only) */}
         {isFinal && leaderboard && (
           <Leaderboard scores={leaderboard} currentScore={score} />
+        )}
+
+        {isFinal && (
+          <div className="victory-ending-image">
+            <img src="/storyboard-ending.jpg" alt="Ana's restaurant empire" />
+          </div>
         )}
 
         <div className="victory-badge">

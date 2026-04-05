@@ -108,6 +108,99 @@ const REALM_CUTSCENES = {
       },
     ],
   },
+
+  'Conversion Cliffs': {
+    intro: [
+      {
+        bgImage: '/storyboard-cliffs-intro.jpg',
+        text: "Ana emerges onto the legendary Conversion Cliffs \u2014 a breathtaking precipice above a glowing river of pure digital traffic. Millions of potential customers wander below, but visibility is only half the battle. She must convert them into paying customers!",
+        textColor: '#ffd700',
+      },
+      {
+        bgImage: '/storyboard-cliffs-comic.jpg',
+        text: "Getting a million people to look means nothing if they just scroll past. Ana must build a bridge of irresistible UX, mouth-watering menu design, and frictionless checkout to guide the hungry masses across the chasm!",
+        textColor: '#39ff14',
+      },
+    ],
+    completion: [
+      {
+        bgImage: '/storyboard-cliffs-complete.jpg',
+        text: "Ana steps off Charon's airship onto the gold-paved pathways. The swirling abyss of bounced traffic fades behind her. Her visitors are now hungry, paying customers clicking \"Order Now\" \u2014 the sales funnel is officially optimized!",
+        textColor: '#ffd700',
+      },
+    ],
+  },
+
+  'Repeat Order Railway': {
+    intro: [
+      {
+        bgImage: '/storyboard-railway-intro.jpg',
+        text: "The thunderous blast of a steam engine echoes across the digital frontier! Ana has arrived at the Repeat Order Railway. That first order was huge, but a true empire is built on retention \u2014 turning casual diners into hardcore fanatics.",
+        textColor: '#ff8c00',
+      },
+      {
+        bgImage: '/storyboard-railway-comic.jpg',
+        text: "The platform is packed with locals waving \"I Love AREPAS\" signs. SMS campaigns, gift cards, and loyalty points fill the boxcars. Ana tips her hat and clutches her loyalty metrics \u2014 it's time to ride!",
+        textColor: '#ffd700',
+      },
+    ],
+    completion: [
+      {
+        bgImage: '/storyboard-railway-complete.jpg',
+        text: "The Ticket Master pinned a shining Deputy Sheriff star to Ana's vest. The Repeat Orders Express roared to life! Her retention engine is unstoppable \u2014 these aren't just guests anymore, they're lifelong fanatics riding the golden train of loyalty!",
+        textColor: '#ffd700',
+      },
+    ],
+  },
+
+  'Delivery Drive': {
+    intro: [
+      {
+        bgImage: '/storyboard-delivery-intro.jpg',
+        text: "Ana hitches a ride on a sleek delivery truck cruising the Last Mile Expressway. Owner handles the entire delivery ecosystem \u2014 driver networks, real-time tracking, and seamless handoffs. Her only job now is to focus on making perfect arepas!",
+        textColor: '#2d70ff',
+      },
+    ],
+  },
+
+  'Hardware Hive': {
+    intro: [
+      {
+        bgImage: '/storyboard-hive-intro.jpg',
+        text: "Ana arrives at the formidable golden hexagonal gates of the Hardware Hive \u2014 a colossal warehouse buzzing with corporate bees in business suits. She needs tablets, printers, and integrated solutions to bring her operational vision to life.",
+        textColor: '#ffd700',
+      },
+      {
+        bgImage: '/storyboard-hive-comic.jpg',
+        text: "At Owner Operations Bay 7, the hive's industrious workers carry out their technical duties with precision. Ana checks her verification screen \u2014 this is where she acquires the essential hardware for her restaurant empire!",
+        textColor: '#39ff14',
+      },
+    ],
+    completion: [
+      {
+        bgImage: '/storyboard-hive-complete.jpg',
+        text: "With hardware in hand, Ana has one final feat to finish. The short trek up Miscellaneous Mountain \u2014 the last stop on the way to the fertile valley of Sales Growth. She couldn't help but feel like a completely different person with everything she had learned.",
+        textColor: '#ffd700',
+      },
+    ],
+  },
+
+  'Miscellaneous Mountain': {
+    intro: [
+      {
+        bgImage: '/storyboard-misc-intro.jpg',
+        text: "The final stretch! Miscellaneous Mountain rises before Ana \u2014 the last obstacle between her and the Land of Sales Growth. She takes a deep breath. The woman who set out on this journey is a completely different person now. She's ready.",
+        textColor: '#ff8c00',
+      },
+    ],
+    completion: [
+      {
+        bgImage: '/storyboard-misc-complete.jpg',
+        text: "Ana had crossed many lands, battled pure evil, put her wisdom to the test, leaned on the Owner fellowship, and finally made it to the Land of Sales Growth. Her restaurant empire is complete!",
+        textColor: '#ffd700',
+      },
+    ],
+  },
 }
 
 export function getRealmCutscene(realmName, type) {

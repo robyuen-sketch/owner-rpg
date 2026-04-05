@@ -32,41 +32,35 @@ const REALM_CONFIGS = {
     npcClass: 'npc-oracle',
     bgImage: '/storyboard-volcano-scene.jpg',
   },
-  'The Marketing Marketplace': {
-    sceneClass: 'scene-marketplace',
-    particles: 'lanterns',
-    npcClass: 'npc-crier',
-  },
-  'The Delivery Desert': {
-    sceneClass: 'scene-desert',
-    particles: 'sand',
-    npcClass: 'npc-courier',
-  },
-  'The Menu Mountains': {
+  'Conversion Cliffs': {
     sceneClass: 'scene-mountains',
     particles: 'steam',
     npcClass: 'npc-recipemaster',
+    bgImage: '/storyboard-cliffs-scene.jpg',
   },
-  // Website Wilds merged into Visibility Volcano
-  'The OLO Outpost': {
+  'Repeat Order Railway': {
+    sceneClass: 'scene-marketplace',
+    particles: 'lanterns',
+    npcClass: 'npc-crier',
+    bgImage: '/storyboard-railway-scene.jpg',
+  },
+  'Delivery Drive': {
+    sceneClass: 'scene-desert',
+    particles: 'sand',
+    npcClass: 'npc-courier',
+    bgImage: '/storyboard-delivery-scene.jpg',
+  },
+  'Hardware Hive': {
     sceneClass: 'scene-hardware',
     particles: 'data',
     npcClass: 'npc-techsmith',
+    bgImage: '/storyboard-hive-scene.jpg',
   },
-  'The Hardware Haven': {
-    sceneClass: 'scene-hardware',
-    particles: 'data',
-    npcClass: 'npc-techsmith',
-  },
-  'The Loyalty Labyrinth': {
-    sceneClass: 'scene-labyrinth',
-    particles: 'sparkles',
-    npcClass: 'npc-merchant',
-  },
-  'The Cave of Miscellany': {
+  'Miscellaneous Mountain': {
     sceneClass: 'scene-cave',
     particles: 'crystals',
     npcClass: 'npc-eva',
+    bgImage: '/storyboard-misc-scene.jpg',
   },
 }
 

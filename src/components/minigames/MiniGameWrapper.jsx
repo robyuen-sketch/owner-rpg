@@ -6,6 +6,7 @@ import JungleRunGame from './JungleRunGame'
 import CastlevaniaGame from './CastlevaniaGame'
 import PirateShipGame from './PirateShipGame'
 import WirePuzzleGame from './WirePuzzleGame'
+import QuickDrawGame from './QuickDrawGame'
 import './MiniGameWrapper.css'
 
 const GAME_COMPONENTS = {
@@ -16,6 +17,7 @@ const GAME_COMPONENTS = {
   castlevania: CastlevaniaGame,
   pirate_ship: PirateShipGame,
   wire_puzzle: WirePuzzleGame,
+  quick_draw: QuickDrawGame,
 }
 
 const GAME_NAMES = {
@@ -26,6 +28,7 @@ const GAME_NAMES = {
   castlevania: 'DOMAIN DUNGEONS',
   pirate_ship: 'PAYMENT LINE',
   wire_puzzle: 'WIRE CONNECT',
+  quick_draw: 'QUICK DRAW',
 }
 
 function MiniGameWrapper({ gameType, difficulty, fromRealm, toRealm, onComplete, scoreMultiplier = 3 }) {

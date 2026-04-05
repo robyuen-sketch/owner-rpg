@@ -20,6 +20,8 @@ const TRANSITION_OVERRIDES = {
   1: 'castlevania',   // After Domain Dungeon → Ana fights through the dungeon
   2: 'pirate_ship',   // After Stripe Sanctuary → Ana sails the Payment Line
   3: 'wire_puzzle',   // After Integration Isles → Ana connects the wires in 6767
+  5: 'snake',         // After Conversion Cliffs → Arepa Snake
+  6: 'quick_draw',    // After Repeat Order Railway → Western Quick Draw duel
 }
 
 export function getMiniGameForTransition(questionIndex) {

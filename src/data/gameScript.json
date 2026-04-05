@@ -541,183 +541,8 @@
     "explanation": "No, we do not support general custom code or HTML embedding on Owner websites."
   },
   {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "Can customers disable automated marketing?",
-    "options": [
-      "Yes, they can disable all or turn certain ones off individually in the Dashboard",
-      "Yes, but it's all or nothing in Brand Settings",
-      "No, they must be on to drive higher sales"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can disable all automated campaigns or turn certain ones off individually in the Dashboard."
-  },
-  {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "How many SMS marketing blasts can customers send?",
-    "options": [
-      "It depends on how many SMS subscribers they have",
-      "Every customer gets 1 SMS blast per month",
-      "As many as they want"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "The number of SMS blasts depends on how many SMS subscribers the customer has."
-  },
-  {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "Can customers create their own marketing emails and texts?",
-    "options": [
-      "Yes",
-      "No",
-      "Nobody is sure"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can create their own marketing emails and texts."
-  },
-  {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "How many marketing emails can customers send?",
-    "options": [
-      "10,000 per month",
-      "500 per enrolled customer per month",
-      "Unlimited"
-    ],
-    "correctAnswerIndex": 2,
-    "explanation": "Customers can send unlimited marketing emails!"
-  },
-  {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "Can customers pick and choose which guests they want to send one-off marketing emails to?",
-    "options": [
-      "Yes, via a guest marketing selector list",
-      "Yes, based on tags they've put on marketing lists",
-      "No, there is currently no segmentation"
-    ],
-    "correctAnswerIndex": 2,
-    "explanation": "No, there is currently no segmentation. Customers cannot selectively target individual guests for one-off emails."
-  },
-  {
-    "realm": "The Marketing Marketplace",
-    "npc": "The Town Crier",
-    "dialogue": "Can customers import their existing guest data?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can import their existing guest data into the Owner platform."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "How far do our delivery partners deliver and how much do they charge?",
-    "options": [
-      "Uber: 8 miles $6.45, Doordash: 5 miles $7",
-      "Uber: 10 miles $7.99, Doordash: 8 miles $3.99",
-      "All services charge $3.99"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Uber delivers up to 8 miles at $6.45, and DoorDash delivers up to 5 miles at $7."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "How much do we recommend a customer charges for delivery?",
-    "options": [
-      "No higher than $3.99, especially on orders over $30",
-      "Whatever the customer wants \u2014 we have no opinion"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "We strongly recommend no higher than $3.99, especially on orders over $30."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "How are tips on 3rd party delivery orders distributed?",
-    "options": [
-      "3P driver gets 100% of the tip",
-      "Customer selects how tips are divided",
-      "Driver gets up to 20% of subtotal, rest goes to restaurant"
-    ],
-    "correctAnswerIndex": 2,
-    "explanation": "The 3rd party driver gets up to 20% of the subtotal as a tip. Anything above that goes to the restaurant."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "What solution do we offer if there is an issue with a 3P delivery order?",
-    "options": [
-      "Owner will cover the refund amount",
-      "The guest needs to call Uber or DoorDash",
-      "Owner offers a remake of the food"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Owner will cover the refund amount to ensure guest satisfaction."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "Does Uber/DoorDash have average delivery times?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 1,
-    "explanation": "No, Uber and DoorDash do not have guaranteed average delivery times."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "Can customers use their own drivers?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can use their own drivers for delivery."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "Can customers set an order minimum for delivery?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can set a minimum order amount for delivery orders."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "How does delivering alcohol work on Owner?",
-    "options": [
-      "3P is notified to capture Photo ID upon delivery",
-      "Don't ask don't tell policy",
-      "Through special smugglers",
-      "We currently do not offer alcohol delivery until further notice"
-    ],
-    "correctAnswerIndex": 3,
-    "explanation": "We currently do not offer alcohol delivery until further notice."
-  },
-  {
-    "realm": "The Delivery Desert",
-    "npc": "The Courier",
-    "dialogue": "Is alcohol delivery available in all states?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 1,
-    "explanation": "No, alcohol delivery is not available in all states due to varying state regulations."
-  },
-  {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "What versions of a menu can we import into our system?",
     "options": [
       "First party website links, 3P Marketplace links, and PDF/Image",
@@ -728,8 +553,8 @@
     "explanation": "We can import menus from first party website links (Menufy, BeyondMenu, etc), 3P Marketplace links (DoorDash, EZ Cater, etc), and PDF or Image files."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "How long does it TYPICALLY take to bring a PDF menu into our system?",
     "options": [
       "72 hours",
@@ -741,8 +566,8 @@
     "explanation": "It typically takes 48 hours to bring a PDF menu into our system."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "How can a customer upload images for their menu?",
     "options": [
       "Owner Dashboard",
@@ -753,8 +578,8 @@
     "explanation": "Customers can upload menu images through both the Owner Dashboard and by contacting Support."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "IDEALLY, what percentage of menu items should have images?",
     "options": [
       "60% or more",
@@ -765,8 +590,8 @@
     "explanation": "Ideally, 60% or more of menu items should feature high-quality images to drive orders."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "Can customers have multiple standard OLO menus?",
     "options": [
       "Yes, but they can't overlap in availability",
@@ -777,8 +602,8 @@
     "explanation": "Yes! Customers can have multiple standard OLO menus, but they can't overlap in availability."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "Can customers have catering menus on their website?",
     "options": [
       "Yes",
@@ -788,8 +613,8 @@
     "explanation": "Yes! Customers can have catering menus on their Owner website."
   },
   {
-    "realm": "The Menu Mountains",
-    "npc": "The Recipe Master",
+    "realm": "Conversion Cliffs",
+    "npc": "The Architect of Experience",
     "dialogue": "Can customers have in-store menus on their website?",
     "options": [
       "Yes, fully interactive",
@@ -800,8 +625,276 @@
     "explanation": "Kind of \u2014 customers can display in-store menus on their website, but only as a PDF upload."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers disable automated marketing?",
+    "options": [
+      "Yes, they can disable all or turn certain ones off individually in the Dashboard",
+      "Yes, but it's all or nothing in Brand Settings",
+      "No, they must be on to drive higher sales"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can disable all automated campaigns or turn certain ones off individually in the Dashboard."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "How many SMS marketing blasts can customers send?",
+    "options": [
+      "It depends on how many SMS subscribers they have",
+      "Every customer gets 1 SMS blast per month",
+      "As many as they want"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The number of SMS blasts depends on how many SMS subscribers the customer has."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers create their own marketing emails and texts?",
+    "options": [
+      "Yes",
+      "No",
+      "Nobody is sure"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can create their own marketing emails and texts."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "How many marketing emails can customers send?",
+    "options": [
+      "10,000 per month",
+      "500 per enrolled customer per month",
+      "Unlimited"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Customers can send unlimited marketing emails!"
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers pick and choose which guests they want to send one-off marketing emails to?",
+    "options": [
+      "Yes, via a guest marketing selector list",
+      "Yes, based on tags they've put on marketing lists",
+      "No, there is currently no segmentation"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "No, there is currently no segmentation. Customers cannot selectively target individual guests for one-off emails."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers import their existing guest data?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can import their existing guest data into the Owner platform."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can a customer offer coupons for pick-up or delivery orders only?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can restrict coupons to either pick-up or delivery orders."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers control the value of the coupons?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers have full control over the value of their coupons."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can a customer do a BOGO coupon like Payless Shoes?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "No, BOGO (Buy One Get One) coupons are not supported on the Owner platform."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can guests redeem gift cards in store?",
+    "options": [
+      "Yes, with pain",
+      "No, not at all"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes, guests can redeem gift cards in store \u2014 though the process isn't the smoothest."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "How many points are guests given at enrollment of loyalty?",
+    "options": [
+      "1000",
+      "100",
+      "500",
+      "50"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Guests receive 100 points just for enrolling in the loyalty program."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "What is the ratio of loyalty points to dollars spent?",
+    "options": [
+      "100 points per $1",
+      "10 points per $1",
+      "1 point per 10 cents on orders over $5",
+      "Customer configures ratios in Dashboard"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The standard ratio is 10 points per $1 spent."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "Can customers advertise events on an Owner website?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can advertise events on their Owner website."
+  },
+  {
+    "realm": "Repeat Order Railway",
+    "npc": "The Ticket Master",
+    "dialogue": "What push notifications do we send to guests from our mobile apps?",
+    "options": [
+      "Order delayed, ready for pickup, and coupon offers",
+      "Delivery driver received food and delivery complete",
+      "All of the above"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "We send push notifications for: order is delayed, order is ready for pickup by guest, and coupon offers."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "How far do our delivery partners deliver and how much do they charge?",
+    "options": [
+      "Uber: 8 miles $6.45, Doordash: 5 miles $7",
+      "Uber: 10 miles $7.99, Doordash: 8 miles $3.99",
+      "All services charge $3.99"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Uber delivers up to 8 miles at $6.45, and DoorDash delivers up to 5 miles at $7."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "How much do we recommend a customer charges for delivery?",
+    "options": [
+      "No higher than $3.99, especially on orders over $30",
+      "Whatever the customer wants \u2014 we have no opinion"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "We strongly recommend no higher than $3.99, especially on orders over $30."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "How are tips on 3rd party delivery orders distributed?",
+    "options": [
+      "3P driver gets 100% of the tip",
+      "Customer selects how tips are divided",
+      "Driver gets up to 20% of subtotal, rest goes to restaurant"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The 3rd party driver gets up to 20% of the subtotal as a tip. Anything above that goes to the restaurant."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "What solution do we offer if there is an issue with a 3P delivery order?",
+    "options": [
+      "Owner will cover the refund amount",
+      "The guest needs to call Uber or DoorDash",
+      "Owner offers a remake of the food"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Owner will cover the refund amount to ensure guest satisfaction."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "Does Uber/DoorDash have average delivery times?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "No, Uber and DoorDash do not have guaranteed average delivery times."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "Can customers use their own drivers?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can use their own drivers for delivery."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "Can customers set an order minimum for delivery?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Yes! Customers can set a minimum order amount for delivery orders."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "How does delivering alcohol work on Owner?",
+    "options": [
+      "3P is notified to capture Photo ID upon delivery",
+      "Don't ask don't tell policy",
+      "Through special smugglers",
+      "We currently do not offer alcohol delivery until further notice"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "We currently do not offer alcohol delivery until further notice."
+  },
+  {
+    "realm": "Delivery Drive",
+    "npc": "The Route Dispatcher",
+    "dialogue": "Is alcohol delivery available in all states?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "No, alcohol delivery is not available in all states due to varying state regulations."
+  },
+  {
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "Can customers connect the Owner tablet to multiple printers? Can multiple tablets connect to one printer?",
     "options": [
       "Yes",
@@ -811,8 +904,8 @@
     "explanation": "No! It's one tablet to one printer. No multiple connections in either direction."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "What brand of printer does Owner provide for our customers?",
     "options": [
       "Cyberdyne Skynet Series",
@@ -824,8 +917,8 @@
     "explanation": "We provide the Star Micronics TSP printer for our customers."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "What brand of tablet does Owner provide for our customers?",
     "options": [
       "iPad Air",
@@ -838,8 +931,8 @@
     "explanation": "We provide the Lenovo Yoga Tab 11 for our customers."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "What is our app used on the tablet called?",
     "options": [
       "Owner App",
@@ -850,8 +943,8 @@
     "explanation": "Our tablet app is called the Kitchen App."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "Can a customer add the tablet app to a different device or upload other apps onto an Owner tablet?",
     "options": [
       "Yes, from the official Play store with family friendly ratings",
@@ -863,8 +956,8 @@
     "explanation": "No! Customers cannot add the Kitchen App to other devices or install other apps on the Owner tablet."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "Does the customer have to manually 'accept' catering orders?",
     "options": [
       "Yes",
@@ -874,8 +967,8 @@
     "explanation": "No! Catering orders do not require manual acceptance."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "When does Owner stop accepting orders on our OLO?",
     "options": [
       "Closing time minus prep/delivery time",
@@ -887,8 +980,8 @@
     "explanation": "Owner stops accepting orders at closing time minus prep/delivery time to ensure orders can be fulfilled."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "Can a customer sell marijuana on their OLO?",
     "options": [
       "Yes",
@@ -898,8 +991,8 @@
     "explanation": "No! Customers cannot sell marijuana through Owner's online ordering system."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "How does a guest place a catering order online?",
     "options": [
       "On the regular menu, designating it as catering at checkout",
@@ -909,8 +1002,8 @@
     "explanation": "Guests place catering orders on a separate catering menu OLO page, not the regular menu."
   },
   {
-    "realm": "The OLO Outpost",
-    "npc": "The Tech Smith",
+    "realm": "Hardware Hive",
+    "npc": "The Hive Architect",
     "dialogue": "Can customers sell merchandise or anything not for immediate consumption?",
     "options": [
       "Yes",
@@ -920,100 +1013,7 @@
     "explanation": "Yes! Customers can sell merchandise and non-food items on their Owner website."
   },
   {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "Can a customer offer coupons for pick-up or delivery orders only?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can restrict coupons to either pick-up or delivery orders."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "Can customers control the value of the coupons?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers have full control over the value of their coupons."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "Can a customer do a BOGO coupon like Payless Shoes?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 1,
-    "explanation": "No, BOGO (Buy One Get One) coupons are not supported on the Owner platform."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "Can guests redeem gift cards in store?",
-    "options": [
-      "Yes, with pain",
-      "No, not at all"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes, guests can redeem gift cards in store \u2014 though the process isn't the smoothest."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "How many points are guests given at enrollment of loyalty?",
-    "options": [
-      "1000",
-      "100",
-      "500",
-      "50"
-    ],
-    "correctAnswerIndex": 1,
-    "explanation": "Guests receive 100 points just for enrolling in the loyalty program."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "What is the ratio of loyalty points to dollars spent?",
-    "options": [
-      "100 points per $1",
-      "10 points per $1",
-      "1 point per 10 cents on orders over $5",
-      "Customer configures ratios in Dashboard"
-    ],
-    "correctAnswerIndex": 1,
-    "explanation": "The standard ratio is 10 points per $1 spent."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "Can customers advertise events on an Owner website?",
-    "options": [
-      "Yes",
-      "No"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "Yes! Customers can advertise events on their Owner website."
-  },
-  {
-    "realm": "The Loyalty Labyrinth",
-    "npc": "The Merchant of Loyalty",
-    "dialogue": "What push notifications do we send to guests from our mobile apps?",
-    "options": [
-      "Order delayed, ready for pickup, and coupon offers",
-      "Delivery driver received food and delivery complete",
-      "All of the above"
-    ],
-    "correctAnswerIndex": 0,
-    "explanation": "We send push notifications for: order is delayed, order is ready for pickup by guest, and coupon offers."
-  },
-  {
-    "realm": "The Cave of Miscellany",
+    "realm": "Miscellaneous Mountain",
     "npc": "Eva the Guide",
     "dialogue": "How quickly do customers get conversion cards?",
     "options": [
@@ -1026,7 +1026,7 @@
     "explanation": "Conversion cards take approximately 10 business days to arrive."
   },
   {
-    "realm": "The Cave of Miscellany",
+    "realm": "Miscellaneous Mountain",
     "npc": "Eva the Guide",
     "dialogue": "Who is Invisible?",
     "options": [
@@ -1039,7 +1039,7 @@
     "explanation": "Invisible is our BPO (Business Process Outsourcing) team that helps with menu and funnel builds."
   },
   {
-    "realm": "The Cave of Miscellany",
+    "realm": "Miscellaneous Mountain",
     "npc": "Eva the Guide",
     "dialogue": "What ways can a customer contact Support?",
     "options": [
@@ -1051,7 +1051,7 @@
     "explanation": "Customers can contact Support via phone call, SMS text, AI-powered chat, and email."
   },
   {
-    "realm": "The Cave of Miscellany",
+    "realm": "Miscellaneous Mountain",
     "npc": "Eva the Guide",
     "dialogue": "Final question, champion! What is the name of Eva's mini-dachshund?",
     "options": [
