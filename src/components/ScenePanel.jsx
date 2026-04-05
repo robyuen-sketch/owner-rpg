@@ -24,11 +24,13 @@ const REALM_CONFIGS = {
     sceneClass: 'scene-isles',
     particles: 'clouds',
     npcClass: 'npc-connector',
+    bgImage: '/storyboard-integration-scene.png',
   },
-  'The SEO Summit': {
+  'Visibility Volcano': {
     sceneClass: 'scene-summit',
     particles: 'stars',
     npcClass: 'npc-oracle',
+    bgImage: '/storyboard-volcano-scene.png',
   },
   'The Marketing Marketplace': {
     sceneClass: 'scene-marketplace',
@@ -45,11 +47,7 @@ const REALM_CONFIGS = {
     particles: 'steam',
     npcClass: 'npc-recipemaster',
   },
-  'The Website Wilds': {
-    sceneClass: 'scene-wilds',
-    particles: 'data',
-    npcClass: 'npc-webweaver',
-  },
+  // Website Wilds merged into Visibility Volcano
   'The OLO Outpost': {
     sceneClass: 'scene-hardware',
     particles: 'data',

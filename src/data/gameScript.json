@@ -3,7 +3,12 @@
     "realm": "Top of Funnel Forest",
     "npc": "The Sage of Sales",
     "dialogue": "Welcome, Owner champion. Ana de Arepas needs your help! Which concepts below are included in the 'Poor Fit' list?",
-    "options": ["Bakeries & Desert Shops", "Ghost Kitchens & Meal Prep", "Food is not the primary focus", "All of the Above"],
+    "options": [
+      "Bakeries & Desert Shops",
+      "Ghost Kitchens & Meal Prep",
+      "Food is not the primary focus",
+      "All of the Above"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "Bakeries, Desert Shops, Ghost Kitchens, Meal Prep Kitchens, and businesses where food is not the primary focus are all on the Poor Fit list."
   },
@@ -11,7 +16,11 @@
     "realm": "Top of Funnel Forest",
     "npc": "The Sage of Sales",
     "dialogue": "What are our outbound qualification ICP standards?",
-    "options": ["Min $3k eGMV, existing website, under 10 locations", "Min $5k eGMV, no website needed, under 5 locations", "Min $1k eGMV, existing website, under 20 locations"],
+    "options": [
+      "Min $3k eGMV, existing website, under 10 locations",
+      "Min $5k eGMV, no website needed, under 5 locations",
+      "Min $1k eGMV, existing website, under 20 locations"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Our ICP standards are: Minimum $3k eGMV, existing website and presence, and under 10 locations."
   },
@@ -19,7 +28,11 @@
     "realm": "Top of Funnel Forest",
     "npc": "The Sage of Sales",
     "dialogue": "Do we need access to the customer's GBP for them to be successful on Owner?",
-    "options": ["Yes", "No", "Only if they want SEO"],
+    "options": [
+      "Yes",
+      "No",
+      "Only if they want SEO"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! GBP access is strictly required for success on Owner."
   },
@@ -27,7 +40,10 @@
     "realm": "Top of Funnel Forest",
     "npc": "The Sage of Sales",
     "dialogue": "Where can customers find their GBP login information or gain access?",
-    "options": ["They cannot access GBP unless they have the original login", "They can claim it by verifying ownership through Google, even without the original email"],
+    "options": [
+      "They cannot access GBP unless they have the original login",
+      "They can claim it by verifying ownership through Google, even without the original email"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Customers can claim a GBP by saying they own the business and verifying via email. If they don't have access to that email, they can go through Google verification of ownership."
   },
@@ -35,7 +51,10 @@
     "realm": "Top of Funnel Forest",
     "npc": "The Sage of Sales",
     "dialogue": "Does the customer need to have a Yelp page to use Owner?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes, customers need to have a Yelp page to use Owner."
   },
@@ -43,7 +62,11 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "Do we need access to the customer's website domain to move forward?",
-    "options": ["Yes, no compromise", "If they have one", "No, it's not important"],
+    "options": [
+      "Yes, no compromise",
+      "If they have one",
+      "No, it's not important"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "We need access to the domain if they have one. It's important but situational."
   },
@@ -51,15 +74,25 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "What can the website whois.com/whois be used for?",
-    "options": ["Personal Prospecting Information", "Website Presence and Grader", "Domain Host Research", "Tours of Magna Utah"],
+    "options": [
+      "Personal Prospecting Information",
+      "Website Presence and Grader",
+      "Domain Host Research",
+      "Tours of Magna Utah"
+    ],
     "correctAnswerIndex": 2,
-    "explanation": "WHOIS is used for Domain Host Research — finding out who hosts a customer's domain."
+    "explanation": "WHOIS is used for Domain Host Research \u2014 finding out who hosts a customer's domain."
   },
   {
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "What is a fractured domain?",
-    "options": ["A website infected with a virus", "Customer has multiple websites that divide visitor traffic", "An expired or parked domain", "Customer lost market share to competitors"],
+    "options": [
+      "A website infected with a virus",
+      "Customer has multiple websites that divide visitor traffic",
+      "An expired or parked domain",
+      "Customer lost market share to competitors"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "A fractured domain is when a customer has multiple websites that divide visitor traffic, confusing guests and hurting rankings."
   },
@@ -67,7 +100,12 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "Why are fractured domains so bad?",
-    "options": ["Google favors traffic given to a single domain for ranking", "Multiple websites make the guest journey unclear", "Order volume is typically cut by 50%", "All of the above"],
+    "options": [
+      "Google favors traffic given to a single domain for ranking",
+      "Multiple websites make the guest journey unclear",
+      "Order volume is typically cut by 50%",
+      "All of the above"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "All of the above! Google favors single domains, multiple sites confuse guests, and order volume is typically cut by 50%."
   },
@@ -75,7 +113,11 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "Do we need access to the customer's top ranking domain?",
-    "options": ["Yes, no compromise", "Yes, but we can use another as an absolute last resort", "No, it's not important"],
+    "options": [
+      "Yes, no compromise",
+      "Yes, but we can use another as an absolute last resort",
+      "No, it's not important"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Yes, we need the top ranking domain, but we can use another as an absolute last resort."
   },
@@ -83,7 +125,10 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "Does the customer HAVE to have a current website to sign with Owner?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, they don't need a current website. We can work with customers who don't have one yet."
   },
@@ -91,7 +136,11 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "What risk comes with buying a new domain for a customer?",
-    "options": ["An older site may exist creating a fractured domain", "New domains take months to rank on Google", "Both"],
+    "options": [
+      "An older site may exist creating a fractured domain",
+      "New domains take months to rank on Google",
+      "Both"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Both! There might be an older site creating a fractured domain, AND new domains can take months for Google to rank."
   },
@@ -99,7 +148,10 @@
     "realm": "The Domain Dungeon",
     "npc": "The URL Keeper",
     "dialogue": "Does the customer continue to own their domain after signing up with Owner?",
-    "options": ["Yes", "No, it belongs to Owner"],
+    "options": [
+      "Yes",
+      "No, it belongs to Owner"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! The customer always continues to own their domain."
   },
@@ -107,7 +159,11 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "What information is necessary to set up a Stripe account?",
-    "options": ["SSN/ITIN, photo ID, and DOB only", "Legal business name and EIN only", "All of the above: SSN/ITIN, photo ID, DOB, address, legal business name, EIN, and business contact info"],
+    "options": [
+      "SSN/ITIN, photo ID, and DOB only",
+      "Legal business name and EIN only",
+      "All of the above: SSN/ITIN, photo ID, DOB, address, legal business name, EIN, and business contact info"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Setting up Stripe requires everything: SSN or ITIN, photo ID, DOB, address, contact info, legal business name, EIN, and business contact information."
   },
@@ -115,7 +171,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "Stripe will require a person's information if they cross what % threshold of ownership?",
-    "options": ["50%", "10%", "25%", "20%"],
+    "options": [
+      "50%",
+      "10%",
+      "25%",
+      "20%"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "Stripe requires personal information for anyone who crosses the 20% ownership threshold."
   },
@@ -123,7 +184,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "What is the Stripe holding period after initial account setup?",
-    "options": ["10 Days", "48 Hours", "7 Days", "100 years of solitude"],
+    "options": [
+      "10 Days",
+      "48 Hours",
+      "7 Days",
+      "100 years of solitude"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "The initial Stripe holding period is 7 Days after account setup."
   },
@@ -131,7 +197,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "After the initial holding period, how long is the payout processing cycle?",
-    "options": ["The next business day", "525,600 Minutes", "Immediate", "T+2 processing cycle"],
+    "options": [
+      "The next business day",
+      "525,600 Minutes",
+      "Immediate",
+      "T+2 processing cycle"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "After the initial hold, Stripe uses a T+2 processing cycle for payouts."
   },
@@ -139,7 +210,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "How much is the Stripe processing fee?",
-    "options": ["2.9% + 20 cents", "A bowl of stew", "3.9% + 30 cents", "2.9% + 30 cents"],
+    "options": [
+      "2.9% + 20 cents",
+      "A bowl of stew",
+      "3.9% + 30 cents",
+      "2.9% + 30 cents"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "The standard Stripe processing fee is 2.9% + 30 cents per transaction."
   },
@@ -147,7 +223,11 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "Why are processing fees typically higher for online orders?",
-    "options": ["Internet Use Tax Act (US S86)", "Higher risk of fraud", "Them just be the breaks"],
+    "options": [
+      "Internet Use Tax Act (US S86)",
+      "Higher risk of fraud",
+      "Them just be the breaks"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Online orders have higher processing fees due to a higher risk of fraud compared to in-person transactions."
   },
@@ -155,7 +235,11 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "For new accounts, who pays the processing fee?",
-    "options": ["Always the guest", "Always the customer", "Either the guest or customer, at the customer's discretion"],
+    "options": [
+      "Always the guest",
+      "Always the customer",
+      "Either the guest or customer, at the customer's discretion"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "For new accounts, the processing fee is always paid by the customer (the restaurant)."
   },
@@ -163,7 +247,10 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "What protection do we have against fraudulent CC transactions?",
-    "options": ["Stripe's built-in machine learning fraud detection called 3D Secure", "We keep John Wick on retainer"],
+    "options": [
+      "Stripe's built-in machine learning fraud detection called 3D Secure",
+      "We keep John Wick on retainer"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "We use Stripe's built-in machine learning fraud detection product called 3D Secure."
   },
@@ -171,7 +258,11 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "How do we handle CC disputes and chargebacks?",
-    "options": ["Customer sorts it with guest and Stripe. If unable, Owner reimburses loss but NOT the $15 Stripe fee", "Customer sorts it with guest and Stripe. If unable, Owner reimburses loss AND the $15 Stripe fee", "The customer is entirely on their own"],
+    "options": [
+      "Customer sorts it with guest and Stripe. If unable, Owner reimburses loss but NOT the $15 Stripe fee",
+      "Customer sorts it with guest and Stripe. If unable, Owner reimburses loss AND the $15 Stripe fee",
+      "The customer is entirely on their own"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Stripe contacts the customer with the dispute. The customer tries to sort it with the guest and Stripe. If they can't, Owner reimburses the loss AND the $15 Stripe processing fee."
   },
@@ -179,7 +270,13 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "What is the Owner fee capped at per order?",
-    "options": ["$6.50", "$7.50", "$5.00", "$9.00", "3 Loonies and a Double Double"],
+    "options": [
+      "$6.50",
+      "$7.50",
+      "$5.00",
+      "$9.00",
+      "3 Loonies and a Double Double"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "The Owner service fee is capped at $7.50 per order."
   },
@@ -187,7 +284,11 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "Who pays the Owner service fee?",
-    "options": ["Always the guest", "Always the customer", "The fee can be split between customer and guest"],
+    "options": [
+      "Always the guest",
+      "Always the customer",
+      "The fee can be split between customer and guest"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "The Owner service fee can be split between the customer (restaurant) and the guest."
   },
@@ -195,7 +296,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "Does an Owner customer pay sales tax on their subscription fee?",
-    "options": ["Yes, in all 50 states", "Yes, directly to the Sheriff of Nottingham", "Yes, in 9 states", "Only in California"],
+    "options": [
+      "Yes, in all 50 states",
+      "Yes, directly to the Sheriff of Nottingham",
+      "Yes, in 9 states",
+      "Only in California"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Yes, Owner customers pay sales tax on their subscription fee in 9 states."
   },
@@ -203,7 +309,12 @@
     "realm": "The Stripe Sanctuary",
     "npc": "The Coin Master",
     "dialogue": "Where can customers get a report of the sales tax they've collected?",
-    "options": ["In Stripe only", "They must request a W9 from Owner Support", "In Owner Dashboard only", "In both Stripe and Owner Dashboard"],
+    "options": [
+      "In Stripe only",
+      "They must request a W9 from Owner Support",
+      "In Owner Dashboard only",
+      "In both Stripe and Owner Dashboard"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Customers can get their sales tax collection report in the Owner Dashboard only."
   },
@@ -211,7 +322,11 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Which POS systems does Owner currently integrate with?",
-    "options": ["Toast, Clover, Square, Lightspeed K, Vela, EPOS", "Toast, Aloha, Revel, Clover, Square", "All major POS systems including Menusifu and Aloha"],
+    "options": [
+      "Toast, Clover, Square, Lightspeed K, Vela, EPOS",
+      "Toast, Aloha, Revel, Clover, Square",
+      "All major POS systems including Menusifu and Aloha"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Owner integrates with Toast, Clover, Square, Lightspeed Series K, Vela, and EPOS."
   },
@@ -219,7 +334,10 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Why would a customer integrate with Square or Clover through Otter when we have native integrations?",
-    "options": ["They're already an Otter customer", "Some people just want to watch the world burn"],
+    "options": [
+      "They're already an Otter customer",
+      "Some people just want to watch the world burn"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "If the customer is already using Otter, they may prefer to keep their existing Otter integration rather than switch."
   },
@@ -227,7 +345,10 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Do our Otter integrations offer both order pushes and menu pushes?",
-    "options": ["Yes", "No, order pushes only"],
+    "options": [
+      "Yes",
+      "No, order pushes only"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Our Otter integrations support both order pushes and menu pushes."
   },
@@ -235,7 +356,11 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Where do integrated customers make changes to their menus?",
-    "options": ["Always in the POS", "It depends on the integration", "Always on the Dashboard"],
+    "options": [
+      "Always in the POS",
+      "It depends on the integration",
+      "Always on the Dashboard"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "It depends on the integration. Different POS integrations have different workflows for menu management."
   },
@@ -243,7 +368,11 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Do we support nested modifiers?",
-    "options": ["Yes, for all customers", "Only on Toast/Otter", "No"],
+    "options": [
+      "Yes, for all customers",
+      "Only on Toast/Otter",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! We support nested modifiers for all customers regardless of integration type."
   },
@@ -251,63 +380,175 @@
     "realm": "The Integration Isles",
     "npc": "The Grand Connector",
     "dialogue": "Do we integrate with any loyalty or gift card solutions?",
-    "options": ["Toast Loyalty Only", "No", "Tiptoque Gift Cards only"],
+    "options": [
+      "Toast Loyalty Only",
+      "No",
+      "Tiptoque Gift Cards only"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, we do not currently integrate with any external loyalty or gift card solutions."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "How do our websites improve SEO?",
-    "options": ["Smart keywords, SEO-tagged images, fast load times, and high engagement", "Google SEO Premier Program paid partnership", "Smart keywords and fast load times only"],
+    "options": [
+      "Smart keywords, SEO-tagged images, fast load times, and high engagement",
+      "Google SEO Premier Program paid partnership",
+      "Smart keywords and fast load times only"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Our websites improve SEO through smart keywords, keyword-tagged images, fast load times, and high website engagement through clicks and ordering."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "What matters the MOST for SEO at Owner?",
-    "options": ["Age of the Domain", "Speed of the site response", "Number of cookies collected and cached", "Consistent information about the restaurant across the internet"],
+    "options": [
+      "Age of the Domain",
+      "Speed of the site response",
+      "Number of cookies collected and cached",
+      "Consistent information about the restaurant across the internet"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "Consistent information about the restaurant across the internet is the most vital factor for SEO at Owner."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "How is what Owner does with websites different from what customers currently do?",
-    "options": ["Design-opinionated for SEO, stay on domain, and design for conversion", "10 templates optimized for marketing and auto-capture customer info", "We guarantee first-page Google results"],
+    "options": [
+      "Design-opinionated for SEO, stay on domain, and design for conversion",
+      "10 templates optimized for marketing and auto-capture customer info",
+      "We guarantee first-page Google results"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "We're design-opinionated sacrificing custom aesthetics for optimal SEO. We stay on domain (no 3P OLO links). We design for conversion through strategic call-to-action and design."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "Can we guarantee SEO results?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, we cannot guarantee SEO results. SEO is influenced by many factors beyond our control."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "Do customers have to do everything that we recommend for SEO?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers need to follow our SEO recommendations for the best results."
   },
   {
-    "realm": "The SEO Summit",
-    "npc": "The Oracle of Google",
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
     "dialogue": "Can customers maintain their other websites (Slice, PopMenu, SquareSpace) and also work with Owner?",
-    "options": ["No — this creates a fractured domain", "Yes — more places means more eyes and orders"],
+    "options": [
+      "No \u2014 this creates a fractured domain",
+      "Yes \u2014 more places means more eyes and orders"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "No! Maintaining other websites creates a fractured domain, which is bad for SEO and splits traffic."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "Why can customers not customize the look of the website more?",
+    "options": [
+      "We have an opinionated design philosophy with proven tactics to optimize SEO",
+      "We believe every website should look the same to strengthen Owner brand recognition"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "We have an opinionated design philosophy with proven tactics to optimize SEO. Custom aesthetics are sacrificed for better results."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "Are Owner websites guaranteed to be ADA compliant?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "No, Owner websites are not guaranteed to be ADA compliant."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "Can customers change the font on the website?",
+    "options": [
+      "Yes, we accept any .TTF file upload",
+      "Yes, but only our default fonts are available",
+      "No, our fonts are set for SEO optimization"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Yes, customers can change fonts, but only our default fonts are available to choose from."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "How can customers make edits to their website?",
+    "options": [
+      "They must submit a ticket",
+      "They must contact Support",
+      "They can edit it themselves in the Dashboard or reach out to Support",
+      "They must mail 12 box tops to David Albers in Palo Alto"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Customers can edit their website themselves in the Dashboard or reach out to Support for help."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "How can customers accept reservations on Owner websites?",
+    "options": [
+      "Via a form that sends answers by email, embed OpenTable, or link to a reservation site",
+      "Via our Owner Reservations product with calendar management",
+      "We can embed widgets from any reservation company"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Customers can accept reservations via a form on the website that emails them, by embedding an OpenTable widget, or by linking to a reservation website of their choice."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "Can Owner integrate Google Forms into our websites?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "No, we cannot integrate Google Forms into Owner websites."
+  },
+  {
+    "realm": "Visibility Volcano",
+    "npc": "The Oracle of Visibility",
+    "dialogue": "Can a customer embed any kind of HTML into our websites?",
+    "options": [
+      "Yes, but only for counters and calendars",
+      "Yes, but only for invisible marketing tags and metadata",
+      "No, we do not support general custom code"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "No, we do not support general custom code or HTML embedding on Owner websites."
   },
   {
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "Can customers disable automated marketing?",
-    "options": ["Yes, they can disable all or turn certain ones off individually in the Dashboard", "Yes, but it's all or nothing in Brand Settings", "No, they must be on to drive higher sales"],
+    "options": [
+      "Yes, they can disable all or turn certain ones off individually in the Dashboard",
+      "Yes, but it's all or nothing in Brand Settings",
+      "No, they must be on to drive higher sales"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can disable all automated campaigns or turn certain ones off individually in the Dashboard."
   },
@@ -315,7 +556,11 @@
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "How many SMS marketing blasts can customers send?",
-    "options": ["It depends on how many SMS subscribers they have", "Every customer gets 1 SMS blast per month", "As many as they want"],
+    "options": [
+      "It depends on how many SMS subscribers they have",
+      "Every customer gets 1 SMS blast per month",
+      "As many as they want"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "The number of SMS blasts depends on how many SMS subscribers the customer has."
   },
@@ -323,7 +568,11 @@
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "Can customers create their own marketing emails and texts?",
-    "options": ["Yes", "No", "Nobody is sure"],
+    "options": [
+      "Yes",
+      "No",
+      "Nobody is sure"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can create their own marketing emails and texts."
   },
@@ -331,7 +580,11 @@
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "How many marketing emails can customers send?",
-    "options": ["10,000 per month", "500 per enrolled customer per month", "Unlimited"],
+    "options": [
+      "10,000 per month",
+      "500 per enrolled customer per month",
+      "Unlimited"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Customers can send unlimited marketing emails!"
   },
@@ -339,7 +592,11 @@
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "Can customers pick and choose which guests they want to send one-off marketing emails to?",
-    "options": ["Yes, via a guest marketing selector list", "Yes, based on tags they've put on marketing lists", "No, there is currently no segmentation"],
+    "options": [
+      "Yes, via a guest marketing selector list",
+      "Yes, based on tags they've put on marketing lists",
+      "No, there is currently no segmentation"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "No, there is currently no segmentation. Customers cannot selectively target individual guests for one-off emails."
   },
@@ -347,7 +604,10 @@
     "realm": "The Marketing Marketplace",
     "npc": "The Town Crier",
     "dialogue": "Can customers import their existing guest data?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can import their existing guest data into the Owner platform."
   },
@@ -355,7 +615,11 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "How far do our delivery partners deliver and how much do they charge?",
-    "options": ["Uber: 8 miles $6.45, Doordash: 5 miles $7", "Uber: 10 miles $7.99, Doordash: 8 miles $3.99", "All services charge $3.99"],
+    "options": [
+      "Uber: 8 miles $6.45, Doordash: 5 miles $7",
+      "Uber: 10 miles $7.99, Doordash: 8 miles $3.99",
+      "All services charge $3.99"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Uber delivers up to 8 miles at $6.45, and DoorDash delivers up to 5 miles at $7."
   },
@@ -363,7 +627,10 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "How much do we recommend a customer charges for delivery?",
-    "options": ["No higher than $3.99, especially on orders over $30", "Whatever the customer wants — we have no opinion"],
+    "options": [
+      "No higher than $3.99, especially on orders over $30",
+      "Whatever the customer wants \u2014 we have no opinion"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "We strongly recommend no higher than $3.99, especially on orders over $30."
   },
@@ -371,7 +638,11 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "How are tips on 3rd party delivery orders distributed?",
-    "options": ["3P driver gets 100% of the tip", "Customer selects how tips are divided", "Driver gets up to 20% of subtotal, rest goes to restaurant"],
+    "options": [
+      "3P driver gets 100% of the tip",
+      "Customer selects how tips are divided",
+      "Driver gets up to 20% of subtotal, rest goes to restaurant"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "The 3rd party driver gets up to 20% of the subtotal as a tip. Anything above that goes to the restaurant."
   },
@@ -379,7 +650,11 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "What solution do we offer if there is an issue with a 3P delivery order?",
-    "options": ["Owner will cover the refund amount", "The guest needs to call Uber or DoorDash", "Owner offers a remake of the food"],
+    "options": [
+      "Owner will cover the refund amount",
+      "The guest needs to call Uber or DoorDash",
+      "Owner offers a remake of the food"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Owner will cover the refund amount to ensure guest satisfaction."
   },
@@ -387,7 +662,10 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "Does Uber/DoorDash have average delivery times?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, Uber and DoorDash do not have guaranteed average delivery times."
   },
@@ -395,7 +673,10 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "Can customers use their own drivers?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can use their own drivers for delivery."
   },
@@ -403,7 +684,10 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "Can customers set an order minimum for delivery?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can set a minimum order amount for delivery orders."
   },
@@ -411,7 +695,12 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "How does delivering alcohol work on Owner?",
-    "options": ["3P is notified to capture Photo ID upon delivery", "Don't ask don't tell policy", "Through special smugglers", "We currently do not offer alcohol delivery until further notice"],
+    "options": [
+      "3P is notified to capture Photo ID upon delivery",
+      "Don't ask don't tell policy",
+      "Through special smugglers",
+      "We currently do not offer alcohol delivery until further notice"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "We currently do not offer alcohol delivery until further notice."
   },
@@ -419,71 +708,22 @@
     "realm": "The Delivery Desert",
     "npc": "The Courier",
     "dialogue": "Is alcohol delivery available in all states?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, alcohol delivery is not available in all states due to varying state regulations."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "Why can customers not customize the look of the website more?",
-    "options": ["We have an opinionated design philosophy with proven tactics to optimize SEO", "We believe every website should look the same to strengthen Owner brand recognition"],
-    "correctAnswerIndex": 0,
-    "explanation": "We have an opinionated design philosophy with proven tactics to optimize SEO. Custom aesthetics are sacrificed for better results."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "Are Owner websites guaranteed to be ADA compliant?",
-    "options": ["Yes", "No"],
-    "correctAnswerIndex": 1,
-    "explanation": "No, Owner websites are not guaranteed to be ADA compliant."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "Can customers change the font on the website?",
-    "options": ["Yes, we accept any .TTF file upload", "Yes, but only our default fonts are available", "No, our fonts are set for SEO optimization"],
-    "correctAnswerIndex": 1,
-    "explanation": "Yes, customers can change fonts, but only our default fonts are available to choose from."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "How can customers make edits to their website?",
-    "options": ["They must submit a ticket", "They must contact Support", "They can edit it themselves in the Dashboard or reach out to Support", "They must mail 12 box tops to David Albers in Palo Alto"],
-    "correctAnswerIndex": 2,
-    "explanation": "Customers can edit their website themselves in the Dashboard or reach out to Support for help."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "How can customers accept reservations on Owner websites?",
-    "options": ["Via a form that sends answers by email, embed OpenTable, or link to a reservation site", "Via our Owner Reservations product with calendar management", "We can embed widgets from any reservation company"],
-    "correctAnswerIndex": 0,
-    "explanation": "Customers can accept reservations via a form on the website that emails them, by embedding an OpenTable widget, or by linking to a reservation website of their choice."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "Can Owner integrate Google Forms into our websites?",
-    "options": ["Yes", "No"],
-    "correctAnswerIndex": 1,
-    "explanation": "No, we cannot integrate Google Forms into Owner websites."
-  },
-  {
-    "realm": "The Website Wilds",
-    "npc": "The Web Weaver",
-    "dialogue": "Can a customer embed any kind of HTML into our websites?",
-    "options": ["Yes, but only for counters and calendars", "Yes, but only for invisible marketing tags and metadata", "No, we do not support general custom code"],
-    "correctAnswerIndex": 2,
-    "explanation": "No, we do not support general custom code or HTML embedding on Owner websites."
   },
   {
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "What versions of a menu can we import into our system?",
-    "options": ["First party website links, 3P Marketplace links, and PDF/Image", "Any kind of POS system export", "QR Code scans only"],
+    "options": [
+      "First party website links, 3P Marketplace links, and PDF/Image",
+      "Any kind of POS system export",
+      "QR Code scans only"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "We can import menus from first party website links (Menufy, BeyondMenu, etc), 3P Marketplace links (DoorDash, EZ Cater, etc), and PDF or Image files."
   },
@@ -491,7 +731,12 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "How long does it TYPICALLY take to bring a PDF menu into our system?",
-    "options": ["72 hours", "48 hours", "10 business days", "Time is a human construct"],
+    "options": [
+      "72 hours",
+      "48 hours",
+      "10 business days",
+      "Time is a human construct"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "It typically takes 48 hours to bring a PDF menu into our system."
   },
@@ -499,7 +744,11 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "How can a customer upload images for their menu?",
-    "options": ["Owner Dashboard", "Contact Support", "Both"],
+    "options": [
+      "Owner Dashboard",
+      "Contact Support",
+      "Both"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Customers can upload menu images through both the Owner Dashboard and by contacting Support."
   },
@@ -507,7 +756,11 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "IDEALLY, what percentage of menu items should have images?",
-    "options": ["60% or more", "No more than 80%", "40-60%"],
+    "options": [
+      "60% or more",
+      "No more than 80%",
+      "40-60%"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Ideally, 60% or more of menu items should feature high-quality images to drive orders."
   },
@@ -515,7 +768,11 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "Can customers have multiple standard OLO menus?",
-    "options": ["Yes, but they can't overlap in availability", "No, only one menu is supported", "No, but categories can be used as a workaround"],
+    "options": [
+      "Yes, but they can't overlap in availability",
+      "No, only one menu is supported",
+      "No, but categories can be used as a workaround"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can have multiple standard OLO menus, but they can't overlap in availability."
   },
@@ -523,7 +780,10 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "Can customers have catering menus on their website?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can have catering menus on their Owner website."
   },
@@ -531,15 +791,22 @@
     "realm": "The Menu Mountains",
     "npc": "The Recipe Master",
     "dialogue": "Can customers have in-store menus on their website?",
-    "options": ["Yes, fully interactive", "No", "Kind of — PDF upload only"],
+    "options": [
+      "Yes, fully interactive",
+      "No",
+      "Kind of \u2014 PDF upload only"
+    ],
     "correctAnswerIndex": 2,
-    "explanation": "Kind of — customers can display in-store menus on their website, but only as a PDF upload."
+    "explanation": "Kind of \u2014 customers can display in-store menus on their website, but only as a PDF upload."
   },
   {
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "Can customers connect the Owner tablet to multiple printers? Can multiple tablets connect to one printer?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No! It's one tablet to one printer. No multiple connections in either direction."
   },
@@ -547,7 +814,12 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "What brand of printer does Owner provide for our customers?",
-    "options": ["Cyberdyne Skynet Series", "Micronics TSP", "Vandalay 1600", "Epson ET380"],
+    "options": [
+      "Cyberdyne Skynet Series",
+      "Micronics TSP",
+      "Vandalay 1600",
+      "Epson ET380"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "We provide the Star Micronics TSP printer for our customers."
   },
@@ -555,7 +827,13 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "What brand of tablet does Owner provide for our customers?",
-    "options": ["iPad Air", "Lenovo Yoga Tab 11", "Amazon Kindle Fire", "Samsung Tab S8", "Vault-tec PipBoy"],
+    "options": [
+      "iPad Air",
+      "Lenovo Yoga Tab 11",
+      "Amazon Kindle Fire",
+      "Samsung Tab S8",
+      "Vault-tec PipBoy"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "We provide the Lenovo Yoga Tab 11 for our customers."
   },
@@ -563,7 +841,11 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "What is our app used on the tablet called?",
-    "options": ["Owner App", "Owner OLO", "Kitchen App"],
+    "options": [
+      "Owner App",
+      "Owner OLO",
+      "Kitchen App"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Our tablet app is called the Kitchen App."
   },
@@ -571,7 +853,12 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "Can a customer add the tablet app to a different device or upload other apps onto an Owner tablet?",
-    "options": ["Yes, from the official Play store with family friendly ratings", "Yes, but only approved productivity apps", "Yes, with CSM permission and override code", "No"],
+    "options": [
+      "Yes, from the official Play store with family friendly ratings",
+      "Yes, but only approved productivity apps",
+      "Yes, with CSM permission and override code",
+      "No"
+    ],
     "correctAnswerIndex": 3,
     "explanation": "No! Customers cannot add the Kitchen App to other devices or install other apps on the Owner tablet."
   },
@@ -579,7 +866,10 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "Does the customer have to manually 'accept' catering orders?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No! Catering orders do not require manual acceptance."
   },
@@ -587,7 +877,12 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "When does Owner stop accepting orders on our OLO?",
-    "options": ["Closing time minus prep/delivery time", "Closing time minus 5 minutes", "Closing time", "Custom 'Stop Order Time' field in Dashboard"],
+    "options": [
+      "Closing time minus prep/delivery time",
+      "Closing time minus 5 minutes",
+      "Closing time",
+      "Custom 'Stop Order Time' field in Dashboard"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Owner stops accepting orders at closing time minus prep/delivery time to ensure orders can be fulfilled."
   },
@@ -595,7 +890,10 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "Can a customer sell marijuana on their OLO?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No! Customers cannot sell marijuana through Owner's online ordering system."
   },
@@ -603,7 +901,10 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "How does a guest place a catering order online?",
-    "options": ["On the regular menu, designating it as catering at checkout", "On a separate catering menu OLO page"],
+    "options": [
+      "On the regular menu, designating it as catering at checkout",
+      "On a separate catering menu OLO page"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Guests place catering orders on a separate catering menu OLO page, not the regular menu."
   },
@@ -611,7 +912,10 @@
     "realm": "The OLO Outpost",
     "npc": "The Tech Smith",
     "dialogue": "Can customers sell merchandise or anything not for immediate consumption?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can sell merchandise and non-food items on their Owner website."
   },
@@ -619,7 +923,10 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "Can a customer offer coupons for pick-up or delivery orders only?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can restrict coupons to either pick-up or delivery orders."
   },
@@ -627,7 +934,10 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "Can customers control the value of the coupons?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers have full control over the value of their coupons."
   },
@@ -635,7 +945,10 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "Can a customer do a BOGO coupon like Payless Shoes?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "No, BOGO (Buy One Get One) coupons are not supported on the Owner platform."
   },
@@ -643,15 +956,23 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "Can guests redeem gift cards in store?",
-    "options": ["Yes, with pain", "No, not at all"],
+    "options": [
+      "Yes, with pain",
+      "No, not at all"
+    ],
     "correctAnswerIndex": 0,
-    "explanation": "Yes, guests can redeem gift cards in store — though the process isn't the smoothest."
+    "explanation": "Yes, guests can redeem gift cards in store \u2014 though the process isn't the smoothest."
   },
   {
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "How many points are guests given at enrollment of loyalty?",
-    "options": ["1000", "100", "500", "50"],
+    "options": [
+      "1000",
+      "100",
+      "500",
+      "50"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Guests receive 100 points just for enrolling in the loyalty program."
   },
@@ -659,7 +980,12 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "What is the ratio of loyalty points to dollars spent?",
-    "options": ["100 points per $1", "10 points per $1", "1 point per 10 cents on orders over $5", "Customer configures ratios in Dashboard"],
+    "options": [
+      "100 points per $1",
+      "10 points per $1",
+      "1 point per 10 cents on orders over $5",
+      "Customer configures ratios in Dashboard"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "The standard ratio is 10 points per $1 spent."
   },
@@ -667,7 +993,10 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "Can customers advertise events on an Owner website?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Yes! Customers can advertise events on their Owner website."
   },
@@ -675,7 +1004,11 @@
     "realm": "The Loyalty Labyrinth",
     "npc": "The Merchant of Loyalty",
     "dialogue": "What push notifications do we send to guests from our mobile apps?",
-    "options": ["Order delayed, ready for pickup, and coupon offers", "Delivery driver received food and delivery complete", "All of the above"],
+    "options": [
+      "Order delayed, ready for pickup, and coupon offers",
+      "Delivery driver received food and delivery complete",
+      "All of the above"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "We send push notifications for: order is delayed, order is ready for pickup by guest, and coupon offers."
   },
@@ -683,7 +1016,12 @@
     "realm": "The Cave of Miscellany",
     "npc": "Eva the Guide",
     "dialogue": "How quickly do customers get conversion cards?",
-    "options": ["24 hours", "Approximately 10 business days", "Within one week of going live", "What are Conversion Cards?"],
+    "options": [
+      "24 hours",
+      "Approximately 10 business days",
+      "Within one week of going live",
+      "What are Conversion Cards?"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Conversion cards take approximately 10 business days to arrive."
   },
@@ -691,7 +1029,12 @@
     "realm": "The Cave of Miscellany",
     "npc": "Eva the Guide",
     "dialogue": "Who is Invisible?",
-    "options": ["A clandestine intelligence organization", "A 1949 film starring Peter Lorre", "Our BPO (outsourced team) that helps with menu and funnel builds", "Who isn't invisible, really"],
+    "options": [
+      "A clandestine intelligence organization",
+      "A 1949 film starring Peter Lorre",
+      "Our BPO (outsourced team) that helps with menu and funnel builds",
+      "Who isn't invisible, really"
+    ],
     "correctAnswerIndex": 2,
     "explanation": "Invisible is our BPO (Business Process Outsourcing) team that helps with menu and funnel builds."
   },
@@ -699,7 +1042,11 @@
     "realm": "The Cave of Miscellany",
     "npc": "Eva the Guide",
     "dialogue": "What ways can a customer contact Support?",
-    "options": ["Phone, SMS, AI Chat, and Email", "Phone and Email only", "Through their old XDR via Slack"],
+    "options": [
+      "Phone, SMS, AI Chat, and Email",
+      "Phone and Email only",
+      "Through their old XDR via Slack"
+    ],
     "correctAnswerIndex": 0,
     "explanation": "Customers can contact Support via phone call, SMS text, AI-powered chat, and email."
   },
@@ -707,7 +1054,12 @@
     "realm": "The Cave of Miscellany",
     "npc": "Eva the Guide",
     "dialogue": "Final question, champion! What is the name of Eva's mini-dachshund?",
-    "options": ["Oscar Meyer", "Nathan", "Oslo", "Weenie"],
+    "options": [
+      "Oscar Meyer",
+      "Nathan",
+      "Oslo",
+      "Weenie"
+    ],
     "correctAnswerIndex": 1,
     "explanation": "Eva's mini-dachshund is named Nathan! You've completed the FKAT Trials!"
   }

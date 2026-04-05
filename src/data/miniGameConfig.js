@@ -16,9 +16,10 @@ const GAME_CYCLE = ['pacman', 'space_commanders', 'snake']
 
 // Override specific transitions with custom mini-games
 const TRANSITION_OVERRIDES = {
-  0: 'jungle_run',   // After Top of Funnel → Ana escapes the Cullens
+  0: 'jungle_run',    // After Top of Funnel → Ana escapes the Cullens
   1: 'castlevania',   // After Domain Dungeon → Ana fights through the dungeon
   2: 'pirate_ship',   // After Stripe Sanctuary → Ana sails the Payment Line
+  3: 'wire_puzzle',   // After Integration Isles → Ana connects the wires in 6767
 }
 
 export function getMiniGameForTransition(questionIndex) {
