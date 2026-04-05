@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
+import ControlsOverlay from './ControlsOverlay'
 import './WirePuzzleGame.css'
 
 // Game constants
@@ -275,22 +276,34 @@ function initGameState(difficulty) {
     puzzle.grid, puzzle.rows, puzzle.cols, puzzle.sourceRow, puzzle.targetRow
   )
 
+  // Initialize rotation anim tracking per tile
+  for (let r = 0; r < puzzle.rows; r++) {
+    for (let c = 0; c < puzzle.cols; c++) {
+      puzzle.grid[r][c].rotationAnim = null
+      puzzle.grid[r][c].visualRotation = 0
+    }
+  }
+
   return {
     difficulty: d,
     puzzleIndex: 0,
     puzzle,
     powered,
+    prevPowered: Array.from({ length: puzzle.rows }, () => Array(puzzle.cols).fill(false)),
     targetReached,
     elapsed: 0,
     finished: false,
     solveFlash: 0,
     solveDelay: 0,
     particles: [],
+    sparkParticles: [],
     hoverTile: null,
     lastClicked: null,
     clickAnim: 0,
     // Electricity flow animation
     flowOffset: 0,
+    // Wire pulse glow
+    pulseOffset: 0,
   }
 }
 
@@ -340,15 +353,42 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
       // Don't rotate cross tiles (symmetrical)
       if (tile.connections === (UP | RIGHT | DOWN | LEFT)) return
 
-      // Rotate clockwise
+      // Rotate clockwise with animation
+      const oldVisualRot = tile.visualRotation || 0
+      tile.rotationAnim = { from: oldVisualRot, to: oldVisualRot + Math.PI / 2, timer: 0.2 }
       tile.connections = rotateCW(tile.connections)
       s.lastClicked = { r: row, c: col }
       s.clickAnim = 0.3
 
       // Recheck connectivity
+      const prevPoweredState = s.powered.map(row => [...row])
       const { powered, targetReached } = checkConnectivity(
         puzzle.grid, puzzle.rows, puzzle.cols, puzzle.sourceRow, puzzle.targetRow
       )
+      // Spawn spark particles for newly powered tiles
+      for (let pr = 0; pr < puzzle.rows; pr++) {
+        for (let pc = 0; pc < puzzle.cols; pc++) {
+          if (powered[pr][pc] && !prevPoweredState[pr][pc]) {
+            const gridW = puzzle.cols * TILE_SIZE
+            const gridH = puzzle.rows * TILE_SIZE
+            const oX = (CANVAS_WIDTH - gridW) / 2
+            const oY = (CANVAS_HEIGHT - gridH) / 2 + 10
+            for (let sp = 0; sp < 4; sp++) {
+              const angle = Math.random() * Math.PI * 2
+              s.sparkParticles.push({
+                x: oX + pc * TILE_SIZE + TILE_SIZE / 2,
+                y: oY + pr * TILE_SIZE + TILE_SIZE / 2,
+                vx: Math.cos(angle) * (30 + Math.random() * 40),
+                vy: Math.sin(angle) * (30 + Math.random() * 40),
+                life: 0.3 + Math.random() * 0.3,
+                maxLife: 0.6,
+                size: 2 + Math.random() * 2,
+              })
+            }
+          }
+        }
+      }
+      s.prevPowered = powered.map(row => [...row])
       s.powered = powered
       s.targetReached = targetReached
 
@@ -413,7 +453,34 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
 
     s.elapsed += dt
     s.flowOffset += dt * 80
+    s.pulseOffset += dt
     if (s.clickAnim > 0) s.clickAnim -= dt
+
+    // Update rotation animations on tiles
+    const { puzzle: puz } = s
+    for (let r = 0; r < puz.rows; r++) {
+      for (let c = 0; c < puz.cols; c++) {
+        const tile = puz.grid[r][c]
+        if (tile.rotationAnim) {
+          tile.rotationAnim.timer -= dt
+          if (tile.rotationAnim.timer <= 0) {
+            tile.visualRotation = tile.rotationAnim.to
+            tile.rotationAnim = null
+          } else {
+            const t = 1 - tile.rotationAnim.timer / 0.2
+            tile.visualRotation = tile.rotationAnim.from + (tile.rotationAnim.to - tile.rotationAnim.from) * t
+          }
+        }
+      }
+    }
+
+    // Update spark particles
+    s.sparkParticles = s.sparkParticles.filter(p => {
+      p.x += p.vx * dt
+      p.y += p.vy * dt
+      p.life -= dt
+      return p.life > 0
+    })
 
     // Handle puzzle solve delay
     if (s.solveDelay > 0) {
@@ -426,6 +493,13 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
           s.puzzleIndex++
           const config = getGridConfig(s.difficulty, s.puzzleIndex)
           s.puzzle = generatePuzzle(config.cols, config.rows, s.difficulty)
+          // Init rotation anim tracking
+          for (let rr = 0; rr < s.puzzle.rows; rr++) {
+            for (let cc = 0; cc < s.puzzle.cols; cc++) {
+              s.puzzle.grid[rr][cc].rotationAnim = null
+              s.puzzle.grid[rr][cc].visualRotation = 0
+            }
+          }
           const { powered, targetReached } = checkConnectivity(
             s.puzzle.grid, s.puzzle.rows, s.puzzle.cols,
             s.puzzle.sourceRow, s.puzzle.targetRow
@@ -563,6 +637,15 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
         // Wire color
         const wireColor = isPowered ? WIRE_ON : WIRE_OFF
 
+        // Apply rotation animation transform
+        const hasRotAnim = tile.rotationAnim !== null
+        if (hasRotAnim) {
+          ctx.save()
+          ctx.translate(cx, cy)
+          ctx.rotate(tile.visualRotation)
+          ctx.translate(-cx, -cy)
+        }
+
         // Draw center node
         ctx.fillStyle = wireColor
         ctx.beginPath()
@@ -610,13 +693,18 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
           ctx.restore()
         }
 
-        // Electricity flow animation on powered wires
+        // Restore rotation transform
+        if (hasRotAnim) {
+          ctx.restore()
+        }
+
+        // Wire pulse glow - traveling bright dot on powered wires
         if (isPowered) {
           const dirs = [UP, DOWN, LEFT, RIGHT]
           for (const dir of dirs) {
             if (!(tile.connections & dir)) continue
-            // Draw flowing dots along the wire
             const { dr, dc } = dirOffset(dir)
+            // Flowing dots
             for (let t = 0; t < 3; t++) {
               const frac = ((s.flowOffset / 60 + t * 0.33) % 1)
               const dotX = cx + dc * (TILE_SIZE / 2) * frac
@@ -626,23 +714,53 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
               ctx.arc(dotX, dotY, 1.5, 0, Math.PI * 2)
               ctx.fill()
             }
+            // Sine-wave pulse bright dot
+            const pulsePos = (Math.sin(s.pulseOffset * 3 + r * 0.7 + c * 1.1) * 0.5 + 0.5)
+            const pDotX = cx + dc * (TILE_SIZE / 2) * pulsePos
+            const pDotY = cy + dr * (TILE_SIZE / 2) * pulsePos
+            ctx.save()
+            ctx.shadowColor = '#ffffff'
+            ctx.shadowBlur = 6
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+            ctx.beginPath()
+            ctx.arc(pDotX, pDotY, 2.5, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.restore()
           }
         }
       }
     }
 
-    // Draw power source (left side)
-    const srcX = offsetX - 20
+    // Draw power source (left side) - battery/generator icon
+    const srcX = offsetX - 22
     const srcY = offsetY + puzzle.sourceRow * TILE_SIZE + TILE_SIZE / 2
-    // Pulsing glow
     const pulse = Math.sin(s.elapsed * 4) * 0.3 + 0.7
+    // Green glow behind
     ctx.save()
     ctx.shadowColor = SOURCE_COLOR
-    ctx.shadowBlur = 12 * pulse
+    ctx.shadowBlur = 14 * pulse
+    // Battery body - stacked rectangles
+    ctx.fillStyle = '#1a3a1a'
+    ctx.fillRect(srcX - 10, srcY - 14, 20, 28)
     ctx.fillStyle = SOURCE_COLOR
-    ctx.beginPath()
-    ctx.arc(srcX, srcY, 10, 0, Math.PI * 2)
-    ctx.fill()
+    ctx.strokeStyle = SOURCE_COLOR
+    ctx.lineWidth = 1.5
+    ctx.strokeRect(srcX - 10, srcY - 14, 20, 28)
+    // Battery cap (top terminal)
+    ctx.fillStyle = SOURCE_COLOR
+    ctx.fillRect(srcX - 4, srcY - 17, 8, 4)
+    // Internal bars (charge level)
+    for (let bi = 0; bi < 3; bi++) {
+      const barAlpha = pulse * (1 - bi * 0.2)
+      ctx.fillStyle = `rgba(57, 255, 20, ${barAlpha})`
+      ctx.fillRect(srcX - 6, srcY + 8 - bi * 8, 12, 5)
+    }
+    // + symbol
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(srcX - 1, srcY - 13, 2, 6)
+    ctx.fillRect(srcX - 3, srcY - 11, 6, 2)
+    // - symbol
+    ctx.fillRect(srcX - 3, srcY + 10, 6, 2)
     ctx.restore()
     // Source wire to grid
     ctx.strokeStyle = SOURCE_COLOR
@@ -652,38 +770,55 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
     ctx.lineTo(offsetX, srcY)
     ctx.stroke()
     // "PWR" label
-    drawPixelText(ctx, 'PWR', srcX - 18, srcY - 20, 7, SOURCE_COLOR, 'center')
+    drawPixelText(ctx, 'PWR', srcX, srcY - 24, 7, SOURCE_COLOR, 'center')
 
-    // Draw target endpoint (right side)
-    const tgtX = offsetX + gridW + 20
+    // Draw target endpoint (right side) - detailed chip with pin legs
+    const tgtX = offsetX + gridW + 22
     const tgtY = offsetY + puzzle.targetRow * TILE_SIZE + TILE_SIZE / 2
-    // Chip icon
+    const tgtActive = s.targetReached
+    const chipColor = tgtActive ? TARGET_COLOR : '#664400'
+    const pinColor = tgtActive ? '#fff' : '#553300'
     ctx.save()
-    if (s.targetReached) {
+    if (tgtActive) {
       ctx.shadowColor = TARGET_COLOR
       ctx.shadowBlur = 15
     }
-    ctx.fillStyle = s.targetReached ? TARGET_COLOR : '#664400'
-    ctx.fillRect(tgtX - 10, tgtY - 10, 20, 20)
-    // Chip pins
-    ctx.fillStyle = s.targetReached ? '#fff' : '#553300'
+    // Chip body
+    ctx.fillStyle = tgtActive ? '#3a2a00' : '#221500'
+    ctx.fillRect(tgtX - 12, tgtY - 14, 24, 28)
+    ctx.strokeStyle = chipColor
+    ctx.lineWidth = 1.5
+    ctx.strokeRect(tgtX - 12, tgtY - 14, 24, 28)
+    // Pin legs along all 4 edges
+    ctx.fillStyle = pinColor
     for (let i = -1; i <= 1; i++) {
-      ctx.fillRect(tgtX - 13, tgtY + i * 6 - 2, 4, 3)
-      ctx.fillRect(tgtX + 9, tgtY + i * 6 - 2, 4, 3)
-      ctx.fillRect(tgtX + i * 6 - 2, tgtY - 13, 3, 4)
-      ctx.fillRect(tgtX + i * 6 - 2, tgtY + 9, 3, 4)
+      // Left pins
+      ctx.fillRect(tgtX - 16, tgtY + i * 8 - 2, 5, 3)
+      // Right pins
+      ctx.fillRect(tgtX + 11, tgtY + i * 8 - 2, 5, 3)
+      // Top pins
+      ctx.fillRect(tgtX + i * 8 - 2, tgtY - 18, 3, 5)
+      // Bottom pins
+      ctx.fillRect(tgtX + i * 8 - 2, tgtY + 13, 3, 5)
     }
+    // "API" text in center of chip
+    drawPixelText(ctx, 'API', tgtX, tgtY - 2, 7, chipColor, 'center')
+    // Small circuit trace inside chip
+    ctx.strokeStyle = chipColor
+    ctx.lineWidth = 0.5
+    ctx.globalAlpha = 0.4
+    ctx.strokeRect(tgtX - 8, tgtY - 10, 16, 20)
+    ctx.globalAlpha = 1
     ctx.restore()
     // Target wire from grid
-    ctx.strokeStyle = s.targetReached ? TARGET_COLOR : '#664400'
+    ctx.strokeStyle = chipColor
     ctx.lineWidth = WIRE_WIDTH
     ctx.beginPath()
     ctx.moveTo(offsetX + gridW, tgtY)
-    ctx.lineTo(tgtX - 10, tgtY)
+    ctx.lineTo(tgtX - 12, tgtY)
     ctx.stroke()
-    // "API" label
-    drawPixelText(ctx, 'API', tgtX + 2, tgtY - 22, 7,
-      s.targetReached ? TARGET_COLOR : '#664400', 'center')
+    // Label above
+    drawPixelText(ctx, 'TARGET', tgtX, tgtY - 26, 6, chipColor, 'center')
 
     // Draw particles
     s.particles.forEach(p => {
@@ -692,6 +827,22 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
       ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2)
       ctx.fill()
     })
+
+    // Draw spark particles (cyan sparks for newly powered tiles)
+    s.sparkParticles.forEach(p => {
+      const alpha = Math.max(0, p.life / p.maxLife)
+      ctx.globalAlpha = alpha
+      ctx.fillStyle = '#00ffff'
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.size * (0.3 + alpha * 0.7), 0, Math.PI * 2)
+      ctx.fill()
+      // Bright core
+      ctx.fillStyle = '#ffffff'
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.size * 0.3 * alpha, 0, Math.PI * 2)
+      ctx.fill()
+    })
+    ctx.globalAlpha = 1
 
     // Solve flash
     if (s.solveFlash > 0) {
@@ -746,9 +897,10 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
         height={CANVAS_HEIGHT}
         className="mg-canvas"
       />
-      <div className="mg-controls-hint">
-        CLICK TILES TO ROTATE | CONNECT THE WIRES
-      </div>
+      <ControlsOverlay controls={[
+        { keys: ['CLICK'], label: 'ROTATE TILE' },
+        { keys: ['TAP'], label: 'MOBILE' },
+      ]} />
     </div>
   )
 }

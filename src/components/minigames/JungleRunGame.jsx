@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
+import ControlsOverlay from './ControlsOverlay'
 import './JungleRunGame.css'
 
 // Game constants
@@ -77,6 +78,10 @@ function initGameState(difficulty) {
     trees: generateTrees(),
     groundTiles: generateGround(),
     difficulty: diffMult,
+    // Particle effects
+    particles: [],
+    jumpTrail: [],
+    prevGrounded: true,
   }
 }
 
@@ -235,8 +240,60 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
         s.slowTimer = SLOWDOWN_DURATION
         s.shakeTimer = 0.3
         s.shakeIntensity = 6
+        // Hit sparks
+        const sparkColors = ['#ff4400', '#ff8800', '#ffcc00', '#ff6600', '#ff2200', '#ffaa00']
+        for (let sp = 0; sp < 5 + Math.floor(Math.random() * 2); sp++) {
+          s.particles.push({
+            x: screenX + obs.width / 2,
+            y: ana.y + ANA_HEIGHT / 2,
+            vx: (Math.random() - 0.5) * 200,
+            vy: (Math.random() - 0.5) * 200,
+            life: 0.3 + Math.random() * 0.3,
+            maxLife: 0.3 + Math.random() * 0.3,
+            color: sparkColors[Math.floor(Math.random() * sparkColors.length)],
+            size: 2 + Math.random() * 3,
+          })
+        }
       }
     })
+
+    // Dust burst on landing
+    if (!s.prevGrounded && ana.grounded) {
+      const dustCount = 5 + Math.floor(Math.random() * 4)
+      for (let d = 0; d < dustCount; d++) {
+        s.particles.push({
+          x: ANA_X + ANA_WIDTH / 2 + (Math.random() - 0.5) * 16,
+          y: GROUND_Y - 2,
+          vx: (Math.random() - 0.5) * 120,
+          vy: -30 - Math.random() * 60,
+          life: 0.3 + Math.random() * 0.3,
+          maxLife: 0.3 + Math.random() * 0.3,
+          color: '#8b6b3a',
+          size: 2 + Math.random() * 3,
+        })
+      }
+    }
+    s.prevGrounded = ana.grounded
+
+    // Jump trail - store ghost positions while airborne
+    if (!ana.grounded) {
+      s.jumpTrail.push({ x: ANA_X, y: ana.y, life: 0.3 })
+    }
+    // Update jump trail
+    for (let i = s.jumpTrail.length - 1; i >= 0; i--) {
+      s.jumpTrail[i].life -= dt
+      if (s.jumpTrail[i].life <= 0) s.jumpTrail.splice(i, 1)
+    }
+
+    // Update particles
+    for (let i = s.particles.length - 1; i >= 0; i--) {
+      const p = s.particles[i]
+      p.x += p.vx * dt
+      p.y += p.vy * dt
+      p.vy += 200 * dt // slight gravity on particles
+      p.life -= dt
+      if (p.life <= 0) s.particles.splice(i, 1)
+    }
 
     // === RENDER ===
     const shakeX = s.shakeTimer > 0 ? (Math.random() - 0.5) * s.shakeIntensity : 0
@@ -340,19 +397,43 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
         ctx.lineTo(screenX + obs.width * 0.5, obs.y + obs.height * 0.4)
         ctx.closePath()
         ctx.fill()
+        // Texture lines (cracks)
+        ctx.strokeStyle = '#333'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(screenX + obs.width * 0.35, obs.y + obs.height * 0.2)
+        ctx.lineTo(screenX + obs.width * 0.45, obs.y + obs.height * 0.6)
+        ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(screenX + obs.width * 0.6, obs.y + obs.height * 0.15)
+        ctx.lineTo(screenX + obs.width * 0.55, obs.y + obs.height * 0.5)
+        ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(screenX + obs.width * 0.25, obs.y + obs.height * 0.55)
+        ctx.lineTo(screenX + obs.width * 0.5, obs.y + obs.height * 0.75)
+        ctx.stroke()
       } else if (obs.type === 'log') {
         // Fallen log
         ctx.fillStyle = obs.color
         ctx.fillRect(screenX, obs.y, obs.width, obs.height)
-        // Wood grain
+        // Wood grain (more bark lines)
         ctx.fillStyle = '#4a2a10'
         ctx.fillRect(screenX + 5, obs.y + 4, obs.width - 10, 3)
         ctx.fillRect(screenX + 8, obs.y + 12, obs.width - 16, 2)
+        ctx.fillRect(screenX + 3, obs.y + 8, obs.width - 8, 1)
+        ctx.fillRect(screenX + 12, obs.y + 16, obs.width - 20, 1)
+        ctx.fillRect(screenX + 6, obs.y + 2, obs.width - 14, 1)
         // End circles
         ctx.fillStyle = '#6a4a2a'
         ctx.beginPath()
         ctx.ellipse(screenX, obs.y + obs.height / 2, obs.height / 2, obs.height / 2, 0, 0, Math.PI * 2)
         ctx.fill()
+        // Ring detail on end
+        ctx.strokeStyle = '#3a1a08'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.arc(screenX, obs.y + obs.height / 2, obs.height * 0.3, 0, Math.PI * 2)
+        ctx.stroke()
       } else if (obs.type === 'root') {
         // Gnarled root
         ctx.fillStyle = obs.color
@@ -366,12 +447,29 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
         // Hanging vine
         ctx.fillStyle = obs.color
         ctx.fillRect(screenX, 0, obs.width, obs.y + obs.height)
-        // Leaves
+        // Vine texture lines
+        ctx.strokeStyle = '#1a3a1a'
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(screenX + obs.width * 0.3, 0)
+        ctx.lineTo(screenX + obs.width * 0.3, obs.y + obs.height)
+        ctx.stroke()
+        // Leaves (more, alternating sides with varied sizes)
         ctx.fillStyle = '#3a6a3a'
-        for (let i = 0; i < 4; i++) {
-          const ly = obs.y + i * 12
+        for (let i = 0; i < 6; i++) {
+          const ly = obs.y + i * 9
+          const side = i % 2 ? 1 : -1
           ctx.beginPath()
-          ctx.ellipse(screenX + obs.width / 2 + (i % 2 ? 8 : -8), ly, 6, 4, 0, 0, Math.PI * 2)
+          ctx.ellipse(screenX + obs.width / 2 + side * 8, ly, 7, 4, side * 0.3, 0, Math.PI * 2)
+          ctx.fill()
+        }
+        // Darker leaf veins
+        ctx.fillStyle = '#2a5a2a'
+        for (let i = 0; i < 6; i++) {
+          const ly = obs.y + i * 9
+          const side = i % 2 ? 1 : -1
+          ctx.beginPath()
+          ctx.ellipse(screenX + obs.width / 2 + side * 8, ly, 3, 1.5, side * 0.3, 0, Math.PI * 2)
           ctx.fill()
         }
       } else if (obs.type === 'puddle') {
@@ -395,8 +493,27 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
     drawCullen(ctx, cullenBaseX - 25, GROUND_Y - 46, '#4a0020', s.elapsed + 0.3)
     drawCullen(ctx, cullenBaseX - 45, GROUND_Y - 52, '#2a0030', s.elapsed + 0.7)
 
+    // Jump trail (ghost images while airborne)
+    s.jumpTrail.forEach(ghost => {
+      const alpha = (ghost.life / 0.3) * 0.15
+      ctx.globalAlpha = alpha
+      drawAnaRunner(ctx, ghost.x, ghost.y, ANA_WIDTH, ANA_HEIGHT, s.elapsed, s.slowTimer > 0)
+      ctx.globalAlpha = 1.0
+    })
+
     // Draw Ana
     drawAnaRunner(ctx, ANA_X, ana.y, ANA_WIDTH, ANA_HEIGHT, s.elapsed, s.slowTimer > 0)
+
+    // Draw particles
+    s.particles.forEach(p => {
+      const alpha = p.life / p.maxLife
+      ctx.globalAlpha = alpha
+      ctx.fillStyle = p.color
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
+      ctx.fill()
+    })
+    ctx.globalAlpha = 1.0
 
     // Speed lines when going fast
     if (s.speed > BASE_SPEED * 0.9) {
@@ -472,9 +589,10 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
         height={CANVAS_HEIGHT}
         className="mg-canvas"
       />
-      <div className="mg-controls-hint">
-        SPACE / TAP TO JUMP
-      </div>
+      <ControlsOverlay controls={[
+        { keys: ['SPACE', '\u2191'], label: 'JUMP' },
+        { keys: ['TAP'], label: 'MOBILE' },
+      ]} />
     </div>
   )
 }
@@ -558,15 +676,23 @@ function drawCullen(ctx, x, y, color, time) {
   ctx.fillStyle = '#d4d4d4'
   ctx.fillRect(x + 8, y + bob, 16, 12)
 
+  // Red aura around Cullen
+  const auraGrad = ctx.createRadialGradient(x + 16, y + 20 + bob, 5, x + 16, y + 20 + bob, 40)
+  auraGrad.addColorStop(0, 'rgba(255, 0, 0, 0.15)')
+  auraGrad.addColorStop(0.5, 'rgba(255, 0, 0, 0.06)')
+  auraGrad.addColorStop(1, 'rgba(255, 0, 0, 0)')
+  ctx.fillStyle = auraGrad
+  ctx.fillRect(x - 24, y - 20 + bob, 80, 80)
+
   // Eyes (red, glowing)
   ctx.fillStyle = '#ff0000'
   ctx.fillRect(x + 11, y + 4 + bob, 3, 3)
   ctx.fillRect(x + 18, y + 4 + bob, 3, 3)
-  // Eye glow
-  ctx.fillStyle = 'rgba(255, 0, 0, 0.3)'
+  // Eye glow (larger radius)
+  ctx.fillStyle = 'rgba(255, 0, 0, 0.35)'
   ctx.beginPath()
-  ctx.arc(x + 12, y + 5 + bob, 5, 0, Math.PI * 2)
-  ctx.arc(x + 19, y + 5 + bob, 5, 0, Math.PI * 2)
+  ctx.arc(x + 12, y + 5 + bob, 8, 0, Math.PI * 2)
+  ctx.arc(x + 19, y + 5 + bob, 8, 0, Math.PI * 2)
   ctx.fill()
 
   // Fangs

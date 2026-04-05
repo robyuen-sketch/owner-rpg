@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
+import ControlsOverlay from './ControlsOverlay'
 import './PirateShipGame.css'
 
 // Layout constants
@@ -152,6 +153,10 @@ function initGameState(difficulty) {
     // Crossing complete flash
     flashTimer: 0,
     flashColor: '',
+    // Particles system
+    particles: [],
+    // Ship tilt
+    shipTilt: 0,
   }
 }
 
@@ -255,6 +260,38 @@ function PirateShipGame({ difficulty, onEnd, isPlaying }) {
     if (Math.abs(s.shipVisualX - targetX) < 0.5) s.shipVisualX = targetX
     if (Math.abs(s.shipVisualY - targetY) < 0.5) s.shipVisualY = targetY
 
+    // --- SHIP TILT ---
+    const tiltTarget = s.keys.left ? -0.15 : s.keys.right ? 0.15 : 0
+    s.shipTilt += (tiltTarget - s.shipTilt) * 8 * dt
+
+    // --- SHIP WAKE PARTICLES ---
+    if (s.keys.up || s.keys.down || s.keys.left || s.keys.right) {
+      const wakeCount = 1 + (Math.random() < 0.5 ? 1 : 0)
+      for (let i = 0; i < wakeCount; i++) {
+        const dx = s.keys.left ? 1 : s.keys.right ? -1 : (Math.random() - 0.5) * 0.5
+        const dy = s.keys.up ? 1 : s.keys.down ? -1 : 0.5
+        s.particles.push({
+          x: s.shipVisualX + SHIP_SIZE / 2 + (Math.random() - 0.5) * 6,
+          y: s.shipVisualY + SHIP_SIZE / 2 + (Math.random() - 0.5) * 6,
+          vx: dx * (20 + Math.random() * 15),
+          vy: dy * (20 + Math.random() * 15),
+          life: 0.4 + Math.random() * 0.3,
+          maxLife: 0.7,
+          color: '#ffffff',
+          size: 1.5 + Math.random() * 1.5,
+        })
+      }
+    }
+
+    // --- UPDATE PARTICLES ---
+    s.particles = s.particles.filter(p => {
+      p.x += p.vx * dt
+      p.y += p.vy * dt
+      p.vy += 60 * dt // gravity for splash particles
+      p.life -= dt
+      return p.life > 0
+    })
+
     // --- OBSTACLE MOVEMENT ---
     s.obstacles.forEach(obs => {
       if (obs.type === OBS_WHIRLPOOL) {
@@ -298,7 +335,21 @@ function PirateShipGame({ difficulty, onEnd, isPlaying }) {
           shipY < obs.y + obs.h - 4 &&
           shipY + shipH > obs.y + 4
         ) {
-          // HIT
+          // HIT - spawn water splash particles
+          for (let pi = 0; pi < 10; pi++) {
+            const angle = Math.random() * Math.PI * 2
+            const spd = 40 + Math.random() * 80
+            s.particles.push({
+              x: s.shipVisualX + SHIP_SIZE / 2,
+              y: s.shipVisualY + SHIP_SIZE / 2,
+              vx: Math.cos(angle) * spd,
+              vy: Math.sin(angle) * spd - 60,
+              life: 0.5 + Math.random() * 0.4,
+              maxLife: 0.9,
+              color: '#4488ff',
+              size: 2 + Math.random() * 3,
+            })
+          }
           s.lives--
           s.invTimer = INVINCIBILITY_DURATION
           s.shakeTimer = 0.4
@@ -324,13 +375,38 @@ function PirateShipGame({ difficulty, onEnd, isPlaying }) {
     // --- CHECK CROSSING COMPLETE ---
     if (s.shipLane === 0) {
       if (s.crossing >= TOTAL_CROSSINGS) {
+        // Final crossing celebration confetti
+        for (let ci = 0; ci < 20; ci++) {
+          s.particles.push({
+            x: Math.random() * CANVAS_WIDTH,
+            y: -5 - Math.random() * 20,
+            vx: (Math.random() - 0.5) * 60,
+            vy: 40 + Math.random() * 80,
+            life: 1.2 + Math.random() * 0.8,
+            maxLife: 2.0,
+            color: '#ffd700',
+            size: 2 + Math.random() * 3,
+          })
+        }
         s.finished = true
         s.flashTimer = 0.5
         s.flashColor = COLORS.GOLD
         endGame()
         return
       }
-      // Next crossing
+      // Next crossing - spawn gold confetti
+      for (let ci = 0; ci < 20; ci++) {
+        s.particles.push({
+          x: Math.random() * CANVAS_WIDTH,
+          y: -5 - Math.random() * 20,
+          vx: (Math.random() - 0.5) * 60,
+          vy: 40 + Math.random() * 80,
+          life: 1.2 + Math.random() * 0.8,
+          maxLife: 2.0,
+          color: '#ffd700',
+          size: 2 + Math.random() * 3,
+        })
+      }
       s.crossing++
       s.shipLane = 12
       s.shipVisualY = 12 * LANE_HEIGHT + (LANE_HEIGHT - SHIP_SIZE) / 2
@@ -410,8 +486,19 @@ function PirateShipGame({ difficulty, onEnd, isPlaying }) {
     // --- PLAYER SHIP ---
     const showShip = s.invTimer <= 0 || Math.floor(s.elapsed * 10) % 2 === 0
     if (showShip) {
-      drawPlayerShip(ctx, s.shipVisualX, s.shipVisualY, SHIP_SIZE, s.shipDir, s.elapsed)
+      drawPlayerShip(ctx, s.shipVisualX, s.shipVisualY, SHIP_SIZE, s.shipDir, s.elapsed, s.shipTilt)
     }
+
+    // --- DRAW PARTICLES ---
+    s.particles.forEach(p => {
+      const alpha = Math.max(0, p.life / p.maxLife)
+      ctx.globalAlpha = alpha
+      ctx.fillStyle = p.color
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, p.size * (0.5 + alpha * 0.5), 0, Math.PI * 2)
+      ctx.fill()
+    })
+    ctx.globalAlpha = 1
 
     // Flash effect
     if (s.flashTimer > 0) {
@@ -458,9 +545,10 @@ function PirateShipGame({ difficulty, onEnd, isPlaying }) {
         height={CANVAS_HEIGHT}
         className="mg-canvas"
       />
-      <div className="mg-controls-hint">
-        ARROWS / WASD TO NAVIGATE
-      </div>
+      <ControlsOverlay controls={[
+        { keys: ['\u2190', '\u2192', '\u2191', '\u2193'], label: 'NAVIGATE' },
+        { keys: ['W','A','S','D'], label: 'ALT' },
+      ]} />
     </div>
   )
 }
@@ -571,6 +659,17 @@ function drawObstacle(ctx, obs, time) {
     ctx.fillStyle = '#111'
     ctx.fillRect(x + w / 2 + 6, y + 6, 2, 2)
     ctx.fillRect(x + w / 2 + 10, y + 6, 2, 2)
+    // Pirate flag on mast
+    ctx.fillStyle = '#1a0a00'
+    ctx.fillRect(x + w / 2 - 1, y - 6, 2, 10)
+    ctx.fillStyle = '#cc2222'
+    ctx.beginPath()
+    ctx.moveTo(x + w / 2 + 1, y - 6)
+    ctx.lineTo(x + w / 2 + 12, y - 2)
+    ctx.lineTo(x + w / 2 + 1, y + 2)
+    ctx.closePath()
+    ctx.fill()
+
     // Red glow
     ctx.fillStyle = `rgba(180, 0, 0, ${0.15 + Math.sin(time * 3) * 0.08})`
     ctx.fillRect(x - 2, y - 2, w + 4, h + 4)
@@ -663,13 +762,13 @@ function drawObstacle(ctx, obs, time) {
   }
 }
 
-function drawPlayerShip(ctx, x, y, size, dir, time) {
+function drawPlayerShip(ctx, x, y, size, dir, time, tilt = 0) {
   ctx.save()
   ctx.translate(x + size / 2, y + size / 2)
 
   // Rotate based on direction: 0=up, 1=right, 2=down, 3=left
   const angles = [0, Math.PI / 2, Math.PI, -Math.PI / 2]
-  ctx.rotate(angles[dir])
+  ctx.rotate(angles[dir] + tilt)
 
   const s = size / 2
 

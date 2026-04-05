@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
+import ControlsOverlay from './ControlsOverlay'
 import './CastlevaniaGame.css'
 
 // Game constants
@@ -188,6 +189,12 @@ function initGameState(difficulty) {
     difficulty: diffMult,
     // Torch particle pool
     particles: [],
+    // Effect particles (death explosions, whip sparks, dust)
+    effectParticles: [],
+    // Death flash circles
+    deathFlashes: [],
+    // Track previous grounded state for landing dust
+    prevGrounded: true,
   }
 }
 
@@ -328,6 +335,24 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       }
     }
 
+    // Landing dust: transition from airborne to grounded
+    if (!s.prevGrounded && ana.grounded) {
+      const dustCount = 4 + Math.floor(Math.random() * 2)
+      for (let d = 0; d < dustCount; d++) {
+        s.effectParticles.push({
+          x: ana.x + ANA_WIDTH / 2 + (Math.random() - 0.5) * 16,
+          y: ana.y + ANA_HEIGHT - 2,
+          vx: (Math.random() - 0.5) * 100,
+          vy: -20 - Math.random() * 50,
+          life: 0.3 + Math.random() * 0.2,
+          maxLife: 0.3 + Math.random() * 0.2,
+          color: '#6a5a3a',
+          size: 2 + Math.random() * 2,
+        })
+      }
+    }
+    s.prevGrounded = ana.grounded
+
     // If still not grounded and over gap, check for falling below ground
     if (overGap && ana.grounded && ana.y + ANA_HEIGHT < GROUND_Y + 10) {
       ana.grounded = false
@@ -410,6 +435,44 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
         ) {
           en.alive = false
           en.flashTimer = 0.4
+
+          // Enemy death explosion fragments
+          const enColor = en.type === 'stalker' ? '#2a1a3a' : '#5a5060'
+          const fragColors = [enColor, '#4a3a5a', '#3a2a4a', '#6a5a6a']
+          for (let f = 0; f < 6 + Math.floor(Math.random() * 3); f++) {
+            s.effectParticles.push({
+              x: en.x + en.w / 2 + (Math.random() - 0.5) * en.w,
+              y: enY + en.h / 2 + (Math.random() - 0.5) * en.h,
+              vx: (Math.random() - 0.5) * 250,
+              vy: -50 - Math.random() * 150,
+              life: 0.5 + Math.random() * 0.4,
+              maxLife: 0.5 + Math.random() * 0.4,
+              color: fragColors[Math.floor(Math.random() * fragColors.length)],
+              size: 3 + Math.random() * 4,
+            })
+          }
+          // Death flash circle
+          s.deathFlashes.push({
+            x: en.x + en.w / 2,
+            y: enY + en.h / 2,
+            life: 0.3,
+            maxLife: 0.3,
+          })
+
+          // Whip impact sparks
+          const sparkColors = ['#ffff88', '#ffffff', '#ffdd44', '#ffee66']
+          for (let sp = 0; sp < 3 + Math.floor(Math.random() * 2); sp++) {
+            s.effectParticles.push({
+              x: en.x + en.w / 2,
+              y: enY + en.h / 2,
+              vx: (Math.random() - 0.5) * 180,
+              vy: (Math.random() - 0.5) * 180,
+              life: 0.2 + Math.random() * 0.2,
+              maxLife: 0.2 + Math.random() * 0.2,
+              color: sparkColors[Math.floor(Math.random() * sparkColors.length)],
+              size: 2 + Math.random() * 2,
+            })
+          }
         }
       }
 
@@ -471,6 +534,22 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       if (p.life <= 0) {
         s.particles.splice(i, 1)
       }
+    }
+
+    // Update effect particles (death fragments, sparks, dust)
+    for (let i = s.effectParticles.length - 1; i >= 0; i--) {
+      const p = s.effectParticles[i]
+      p.x += p.vx * dt
+      p.y += p.vy * dt
+      p.vy += 300 * dt // gravity
+      p.life -= dt
+      if (p.life <= 0) s.effectParticles.splice(i, 1)
+    }
+
+    // Update death flashes
+    for (let i = s.deathFlashes.length - 1; i >= 0; i--) {
+      s.deathFlashes[i].life -= dt
+      if (s.deathFlashes[i].life <= 0) s.deathFlashes.splice(i, 1)
     }
 
     // === RENDER ===
@@ -631,6 +710,11 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       // Top edge (lighter)
       ctx.fillStyle = DNG.PLATFORM_TOP
       ctx.fillRect(px, plat.y, plat.w, 3)
+      // Darker 1px edge outlines
+      ctx.fillStyle = '#111'
+      ctx.fillRect(px, plat.y - 1, plat.w, 1) // top outline
+      ctx.fillRect(px - 1, plat.y, 1, plat.h) // left outline
+      ctx.fillRect(px + plat.w, plat.y, 1, plat.h) // right outline
       // Bottom edge (darker)
       ctx.fillStyle = DNG.PLATFORM_EDGE
       ctx.fillRect(px, plat.y + plat.h - 2, plat.w, 2)
@@ -640,6 +724,21 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       // Stone line detail
       ctx.fillStyle = DNG.STONE_DARK
       ctx.fillRect(px + plat.w * 0.4, plat.y + 4, 1, plat.h - 6)
+      // Crack lines on surface
+      ctx.strokeStyle = '#2a2030'
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      ctx.moveTo(px + plat.w * 0.2, plat.y + 5)
+      ctx.lineTo(px + plat.w * 0.25, plat.y + plat.h - 3)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(px + plat.w * 0.65, plat.y + 4)
+      ctx.lineTo(px + plat.w * 0.7, plat.y + plat.h - 4)
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(px + plat.w * 0.15, plat.y + plat.h * 0.5)
+      ctx.lineTo(px + plat.w * 0.35, plat.y + plat.h * 0.6)
+      ctx.stroke()
     })
 
     // === ENEMIES ===
@@ -667,9 +766,13 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
     // === ANA ===
     const anaScreenX = ana.x - s.cameraX
     const isInv = ana.invTimer > 0
-    // Flash during invincibility
-    if (!isInv || Math.floor(s.elapsed * 10) % 2 === 0) {
-      drawAnaCastlevania(ctx, anaScreenX, ana.y, ANA_WIDTH, ANA_HEIGHT, s.elapsed, ana.facingRight, ana.whipTimer > 0, ana.vx !== 0)
+    // Flash during invincibility: alternate between full opacity and 0.3 every 0.1s
+    if (isInv) {
+      ctx.globalAlpha = Math.floor(s.elapsed / 0.1) % 2 === 0 ? 1.0 : 0.3
+    }
+    drawAnaCastlevania(ctx, anaScreenX, ana.y, ANA_WIDTH, ANA_HEIGHT, s.elapsed, ana.facingRight, ana.whipTimer > 0, ana.vx !== 0)
+    if (isInv) {
+      ctx.globalAlpha = 1.0
     }
 
     // Draw whip
@@ -696,6 +799,32 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       ctx.arc(whipEndX, whipY + 4, 2 + Math.random() * 2, 0, Math.PI * 2)
       ctx.fill()
     }
+
+    // Draw death flash circles
+    s.deathFlashes.forEach(flash => {
+      const progress = 1 - (flash.life / flash.maxLife)
+      const radius = 5 + progress * 15
+      const alpha = flash.life / flash.maxLife
+      ctx.globalAlpha = alpha * 0.8
+      ctx.fillStyle = '#fff'
+      ctx.beginPath()
+      ctx.arc(flash.x - s.cameraX, flash.y, radius, 0, Math.PI * 2)
+      ctx.fill()
+    })
+    ctx.globalAlpha = 1.0
+
+    // Draw effect particles (death fragments, sparks, dust)
+    s.effectParticles.forEach(p => {
+      const px = p.x - s.cameraX
+      if (px < -10 || px > CANVAS_WIDTH + 10) return
+      const alpha = p.life / p.maxLife
+      ctx.globalAlpha = alpha
+      ctx.fillStyle = p.color
+      ctx.beginPath()
+      ctx.arc(px, p.y, p.size, 0, Math.PI * 2)
+      ctx.fill()
+    })
+    ctx.globalAlpha = 1.0
 
     // Vignette effect (darken edges)
     const vigGrad = ctx.createRadialGradient(
@@ -773,9 +902,11 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
         height={CANVAS_HEIGHT}
         className="mg-canvas"
       />
-      <div className="mg-controls-hint">
-        ARROWS: MOVE | SPACE: JUMP | X/TAP: WHIP
-      </div>
+      <ControlsOverlay controls={[
+        { keys: ['\u2190', '\u2192'], label: 'MOVE' },
+        { keys: ['SPACE'], label: 'JUMP' },
+        { keys: ['X', 'TAP'], label: 'WHIP' },
+      ]} />
     </div>
   )
 }
