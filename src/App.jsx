@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import gameScript from './data/gameScript.json'
 import { getMiniGameForTransition } from './data/miniGameConfig'
 import { getRealmCutscene, isCompletionBeforeMiniGame } from './data/realmCutscenes'
@@ -17,8 +17,12 @@ import GameOver from './components/GameOver'
 import Victory from './components/Victory'
 
 const TOTAL_GEMS = gameScript.length
-const STARTING_LIVES = 7
+const STARTING_LIVES = 10
 const MINI_GAME_MULTIPLIER = 3
+
+// Checkpoint: first question index of Repeat Order Railway (halfway through)
+const CHECKPOINT_REALM = 'Repeat Order Railway'
+const CHECKPOINT_INDEX = gameScript.findIndex(q => q.realm === CHECKPOINT_REALM)
 
 function getAccuracyMultiplier(correct, total) {
   const ratio = correct / total
@@ -44,6 +48,10 @@ function App() {
   const [realmCutsceneData, setRealmCutsceneData] = useState(null)
   const [pendingMiniGame, setPendingMiniGame] = useState(null)
   const [gameStartTime, setGameStartTime] = useState(null)
+  const [hasCheckpoint, setHasCheckpoint] = useState(false)
+  const [checkpointScore, setCheckpointScore] = useState(0)
+  const [checkpointGems, setCheckpointGems] = useState(0)
+  const [checkpointCorrect, setCheckpointCorrect] = useState(0)
 
   // New scoring state
   const [correctAnswers, setCorrectAnswers] = useState(0)
@@ -54,6 +62,16 @@ function App() {
   const [scoreBreakdown, setScoreBreakdown] = useState(null)
 
   const { isHighScore, addScore, getScores, getTopScore } = useHighScore()
+
+  // Save checkpoint when reaching the Railway realm
+  useEffect(() => {
+    if (!hasCheckpoint && currentQuestionIndex >= CHECKPOINT_INDEX && CHECKPOINT_INDEX >= 0) {
+      setHasCheckpoint(true)
+      setCheckpointScore(score)
+      setCheckpointGems(gems)
+      setCheckpointCorrect(correctAnswers)
+    }
+  }, [currentQuestionIndex, hasCheckpoint, score, gems, correctAnswers])
 
   const currentQuestion = gameScript[currentQuestionIndex]
 
@@ -93,7 +111,21 @@ function App() {
       setLives(newLives)
 
       if (newLives <= 0) {
-        setGamePhase('gameover')
+        if (hasCheckpoint) {
+          // Respawn at checkpoint with 1 life
+          setCurrentQuestionIndex(CHECKPOINT_INDEX)
+          setLives(1)
+          setScore(checkpointScore)
+          setGems(checkpointGems)
+          setCorrectAnswers(checkpointCorrect)
+          setOverlayData({
+            type: 'checkpoint',
+            explanation: "You've been revived at the Repeat Order Railway checkpoint! You have 1 life remaining — make it count!",
+          })
+          setGamePhase('overlay')
+        } else {
+          setGamePhase('gameover')
+        }
       } else {
         setOverlayData({
           type: 'damage',
@@ -280,6 +312,10 @@ function App() {
     setMiniGameRawTotal(0)
     setScoreBreakdown(null)
     setCompletedRealmName(null)
+    setHasCheckpoint(false)
+    setCheckpointScore(0)
+    setCheckpointGems(0)
+    setCheckpointCorrect(0)
   }, [])
 
   if (gamePhase === 'intro') {

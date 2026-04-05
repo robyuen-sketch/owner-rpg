@@ -23,6 +23,15 @@
   animation: screenShake 0.5s ease-out;
 }
 
+.overlay-checkpoint {
+  background: rgba(40, 30, 0, 0.92);
+}
+
+.overlay-box-checkpoint {
+  border-color: #ffd700;
+  background: rgba(40, 30, 0, 0.85);
+}
+
 .overlay-box {
   border: 4px solid;
   padding: 32px;
