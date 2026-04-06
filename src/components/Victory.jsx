@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import './Victory.css'
 
-function Leaderboard({ scores, currentScore }) {
+function LeaderboardPanel({ scores, currentScore, title }) {
   const slots = 5
   return (
-    <div className="lb-container">
-      <div className="lb-title">HIGH SCORES</div>
+    <div className="lb-panel">
+      <div className="lb-title">{title}</div>
       {Array.from({ length: slots }, (_, i) => {
         const entry = scores[i]
         const isCurrent = entry && entry.score === currentScore
@@ -13,7 +13,7 @@ function Leaderboard({ scores, currentScore }) {
           <div key={i} className={`lb-row ${isCurrent ? 'lb-row-current' : ''} ${!entry ? 'lb-row-empty' : ''}`}>
             <span className="lb-rank">{i + 1}.</span>
             <span className="lb-initials">{entry ? entry.initials : '---'}</span>
-            <span className="lb-dots">{'·'.repeat(8)}</span>
+            <span className="lb-dots">{'·'.repeat(6)}</span>
             <span className="lb-score">{entry ? entry.score.toLocaleString() : '-----'}</span>
           </div>
         )
@@ -22,7 +22,16 @@ function Leaderboard({ scores, currentScore }) {
   )
 }
 
-function Victory({ gems, totalGems, score, onContinue, scoreBreakdown, leaderboard, onRestart }) {
+function Leaderboard({ scores, monthlyScores, currentScore, monthLabel }) {
+  return (
+    <div className="lb-container">
+      <LeaderboardPanel scores={scores} currentScore={currentScore} title="ALL TIME" />
+      <LeaderboardPanel scores={monthlyScores} currentScore={currentScore} title={monthLabel?.toUpperCase() || 'THIS MONTH'} />
+    </div>
+  )
+}
+
+function Victory({ gems, totalGems, score, onContinue, scoreBreakdown, leaderboard, monthlyLeaderboard, monthLabel, onRestart }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -138,7 +147,7 @@ function Victory({ gems, totalGems, score, onContinue, scoreBreakdown, leaderboa
 
         {/* Leaderboard (final screen only) */}
         {isFinal && leaderboard && (
-          <Leaderboard scores={leaderboard} currentScore={score} />
+          <Leaderboard scores={leaderboard} monthlyScores={monthlyLeaderboard || []} currentScore={score} monthLabel={monthLabel} />
         )}
 
         {isFinal && (

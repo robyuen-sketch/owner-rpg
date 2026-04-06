@@ -122,44 +122,50 @@
   font-size: 11px;
 }
 
-/* Leaderboard */
-.intro-leaderboard {
-  border: 3px solid #ffd700;
-  background: rgba(255, 215, 0, 0.05);
-  padding: 20px;
-  max-width: 400px;
+/* Leaderboard - Side by Side */
+.intro-leaderboard-wrap {
+  display: flex;
+  gap: 12px;
+  max-width: 560px;
   width: 100%;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.intro-leaderboard {
+  flex: 1;
+  border: 2px solid #ffd700;
+  background: rgba(255, 215, 0, 0.05);
+  padding: 14px 10px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
 }
 
 .intro-lb-title {
-  font-size: 10px;
+  font-size: 8px;
   color: #ffd700;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
 .intro-lb-row {
   display: flex;
   align-items: center;
-  padding: 6px 0;
-  gap: 8px;
+  padding: 4px 0;
+  gap: 4px;
 }
 
 .intro-lb-rank {
-  font-size: 9px;
+  font-size: 7px;
   color: #ffd700;
-  width: 24px;
+  width: 18px;
   text-align: right;
 }
 
 .intro-lb-initials {
-  font-size: 10px;
+  font-size: 8px;
   color: #39ff14;
-  letter-spacing: 4px;
-  width: 60px;
+  letter-spacing: 3px;
+  width: 48px;
 }
 
 .intro-lb-dots {

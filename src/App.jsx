@@ -61,7 +61,7 @@ function App() {
   const [miniGameRawTotal, setMiniGameRawTotal] = useState(0)
   const [scoreBreakdown, setScoreBreakdown] = useState(null)
 
-  const { isHighScore, addScore, getScores, getTopScore } = useHighScore()
+  const { isHighScore, addScore, getScores, getMonthlyScores, getCurrentMonthLabel, getTopScore } = useHighScore()
 
   // Save checkpoint when reaching the Railway realm
   useEffect(() => {
@@ -328,7 +328,7 @@ function App() {
   }, [])
 
   if (gamePhase === 'intro') {
-    return <IntroScreen onStart={handleStartGame} leaderboard={getScores()} />
+    return <IntroScreen onStart={handleStartGame} leaderboard={getScores()} monthlyLeaderboard={getMonthlyScores()} monthLabel={getCurrentMonthLabel()} />
   }
 
   if (gamePhase === 'cutscene') {
@@ -386,6 +386,8 @@ function App() {
         score={score}
         scoreBreakdown={scoreBreakdown}
         leaderboard={getScores()}
+        monthlyLeaderboard={getMonthlyScores()}
+        monthLabel={getCurrentMonthLabel()}
         onRestart={handleRestart}
       />
     )

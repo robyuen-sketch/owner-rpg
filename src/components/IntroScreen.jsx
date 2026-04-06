@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './IntroScreen.css'
 
-function IntroScreen({ onStart, leaderboard = [] }) {
+function IntroScreen({ onStart, leaderboard = [], monthlyLeaderboard = [], monthLabel = '' }) {
   const [showPress, setShowPress] = useState(true)
 
   useEffect(() => {
@@ -62,19 +62,35 @@ function IntroScreen({ onStart, leaderboard = [] }) {
         </div>
 
         {leaderboard.length > 0 && (
-          <div className="intro-leaderboard">
-            <div className="intro-lb-title">HIGH SCORES</div>
-            {Array.from({ length: 5 }, (_, i) => {
-              const entry = leaderboard[i]
-              return (
-                <div key={i} className={`intro-lb-row ${!entry ? 'intro-lb-empty' : ''} ${i === 0 && entry ? 'intro-lb-top' : ''}`}>
-                  <span className="intro-lb-rank">{i + 1}.</span>
-                  <span className="intro-lb-initials">{entry ? entry.initials : '---'}</span>
-                  <span className="intro-lb-dots">{'·'.repeat(8)}</span>
-                  <span className="intro-lb-score">{entry ? entry.score.toLocaleString() : '-----'}</span>
-                </div>
-              )
-            })}
+          <div className="intro-leaderboard-wrap">
+            <div className="intro-leaderboard">
+              <div className="intro-lb-title">ALL TIME</div>
+              {Array.from({ length: 5 }, (_, i) => {
+                const entry = leaderboard[i]
+                return (
+                  <div key={i} className={`intro-lb-row ${!entry ? 'intro-lb-empty' : ''} ${i === 0 && entry ? 'intro-lb-top' : ''}`}>
+                    <span className="intro-lb-rank">{i + 1}.</span>
+                    <span className="intro-lb-initials">{entry ? entry.initials : '---'}</span>
+                    <span className="intro-lb-dots">{'·'.repeat(6)}</span>
+                    <span className="intro-lb-score">{entry ? entry.score.toLocaleString() : '-----'}</span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="intro-leaderboard">
+              <div className="intro-lb-title">{monthLabel?.toUpperCase() || 'THIS MONTH'}</div>
+              {Array.from({ length: 5 }, (_, i) => {
+                const entry = monthlyLeaderboard[i]
+                return (
+                  <div key={i} className={`intro-lb-row ${!entry ? 'intro-lb-empty' : ''} ${i === 0 && entry ? 'intro-lb-top' : ''}`}>
+                    <span className="intro-lb-rank">{i + 1}.</span>
+                    <span className="intro-lb-initials">{entry ? entry.initials : '---'}</span>
+                    <span className="intro-lb-dots">{'·'.repeat(6)}</span>
+                    <span className="intro-lb-score">{entry ? entry.score.toLocaleString() : '-----'}</span>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         )}
 
