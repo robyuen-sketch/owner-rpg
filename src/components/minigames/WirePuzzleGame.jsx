@@ -3,6 +3,7 @@ import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
+import audioManager from '../../hooks/useAudio'
 import './WirePuzzleGame.css'
 
 // Game constants
@@ -359,6 +360,7 @@ function WirePuzzleGame({ difficulty, onEnd, isPlaying }) {
       tile.connections = rotateCW(tile.connections)
       s.lastClicked = { r: row, c: col }
       s.clickAnim = 0.3
+      audioManager.play('buttonClick')
 
       // Recheck connectivity
       const prevPoweredState = s.powered.map(row => [...row])

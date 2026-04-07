@@ -3,6 +3,7 @@ import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, GAME_DURATION, COLORS, SNAKE_CONFIG } from './gameConstants'
 import { clearCanvas, drawPixelText, drawTimerBar } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
+import audioManager from '../../hooks/useAudio'
 import './SnakeGame.css'
 
 // ── Grid constants ──────────────────────────────────────────────
@@ -733,6 +734,7 @@ function SnakeGame({ difficulty, onEnd, isPlaying }) {
       if (newX === s.food.x && newY === s.food.y) {
         s.score += 50
         s.foodEaten++
+        audioManager.play('snakeEat')
         // Spawn particles at food position
         const foodCx = s.food.x * CELL_W + CELL_W / 2
         const foodCy = s.food.y * CELL_H + CELL_H / 2

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import audioManager from '../hooks/useAudio'
 import './Cutscene.css'
 
 const CUTSCENE_SLIDES = [
@@ -166,6 +167,7 @@ function Cutscene({ onComplete }) {
       return
     }
 
+    audioManager.play('slideAdvance')
     setTransitioning(true)
     transitionRef.current = setTimeout(() => {
       setSlideIndex(prev => prev + 1)

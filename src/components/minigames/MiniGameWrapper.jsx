@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import audioManager from '../../hooks/useAudio'
 import PacManGame from './PacManGame'
 import SpaceCommandersGame from './SpaceCommandersGame'
 import SnakeGame from './SnakeGame'
@@ -52,6 +53,11 @@ function MiniGameWrapper({ gameType, difficulty, fromRealm, toRealm, onComplete,
       setPhase('playing')
       return
     }
+    if (countdown > 0) {
+      audioManager.play('countdown')
+    } else {
+      audioManager.play('countdownGo')
+    }
     countdownRef.current = setTimeout(() => {
       setCountdown(prev => prev - 1)
     }, 700)
@@ -60,6 +66,7 @@ function MiniGameWrapper({ gameType, difficulty, fromRealm, toRealm, onComplete,
 
   const handleGameEnd = useCallback((finalScore) => {
     setScore(finalScore)
+    audioManager.play('powerUp')
     setPhase('ending')
   }, [])
 

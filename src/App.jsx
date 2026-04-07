@@ -3,6 +3,8 @@ import gameScript from './data/gameScript.json'
 import { getMiniGameForTransition } from './data/miniGameConfig'
 import { getRealmCutscene, isCompletionBeforeMiniGame } from './data/realmCutscenes'
 import { useHighScore } from './hooks/useHighScore'
+import audioManager from './hooks/useAudio'
+import MuteButton from './components/MuteButton'
 import IntroScreen from './components/IntroScreen'
 import Cutscene from './components/Cutscene'
 import RealmCutscene from './components/RealmCutscene'
@@ -63,6 +65,29 @@ function App() {
 
   const { isHighScore, addScore, getScores, getMonthlyScores, getCurrentMonthLabel, getTopScore } = useHighScore()
 
+  // BGM switching based on game phase
+  useEffect(() => {
+    const bgmMap = {
+      intro: 'intro',
+      cutscene: 'cutscene',
+      realm_cutscene: 'cutscene',
+      realm_cutscene_final: 'cutscene',
+      playing: 'playing',
+      overlay: null, // keep whatever was playing
+      minigame: 'minigame',
+      victory: 'victory',
+      victory_final: 'victory',
+      gameover: 'gameover',
+      highscore_entry: 'victory',
+    }
+    if (bgmMap[gamePhase] === null) return // don't change BGM
+    if (bgmMap[gamePhase]) {
+      audioManager.startBgm(bgmMap[gamePhase])
+    } else {
+      audioManager.stopBgm()
+    }
+  }, [gamePhase])
+
   // Save checkpoint when reaching the Railway realm
   useEffect(() => {
     if (!hasCheckpoint && currentQuestionIndex >= CHECKPOINT_INDEX && CHECKPOINT_INDEX >= 0) {
@@ -76,6 +101,8 @@ function App() {
   const currentQuestion = gameScript[currentQuestionIndex]
 
   const handleStartGame = useCallback(() => {
+    audioManager.unlock()
+    audioManager.play('buttonClick')
     setGamePhase('cutscene')
   }, [])
 
@@ -100,6 +127,8 @@ function App() {
       setScore(prev => prev + totalPoints)
       setQuestionBaseTotal(prev => prev + basePoints)
       setQuestionSpeedTotal(prev => prev + speedBonus)
+      audioManager.play('correct')
+      setTimeout(() => audioManager.play('gemCollect'), 300)
       setOverlayData({
         type: 'success',
         explanation: question.explanation,
@@ -109,6 +138,7 @@ function App() {
     } else {
       const newLives = lives - 1
       setLives(newLives)
+      audioManager.play('wrong')
 
       if (newLives <= 0) {
         if (hasCheckpoint) {
@@ -118,15 +148,18 @@ function App() {
           setScore(checkpointScore)
           setGems(checkpointGems)
           setCorrectAnswers(checkpointCorrect)
+          audioManager.play('checkpoint')
           setOverlayData({
             type: 'checkpoint',
             explanation: "You've been revived at the Repeat Order Railway checkpoint! You have 1 life remaining — make it count!",
           })
           setGamePhase('overlay')
         } else {
+          audioManager.play('gameOver')
           setGamePhase('gameover')
         }
       } else {
+        audioManager.play('damage')
         setOverlayData({
           type: 'damage',
           explanation: question.explanation,
@@ -151,6 +184,7 @@ function App() {
           setPendingMiniGame(null)
           setGamePhase('realm_cutscene_final')
         } else {
+          audioManager.play('victory')
           setGamePhase('victory')
         }
       } else {
@@ -328,7 +362,7 @@ function App() {
   }, [])
 
   if (gamePhase === 'intro') {
-    return <IntroScreen onStart={handleStartGame} leaderboard={getScores()} monthlyLeaderboard={getMonthlyScores()} monthLabel={getCurrentMonthLabel()} />
+    return <><MuteButton /><IntroScreen onStart={handleStartGame} leaderboard={getScores()} monthlyLeaderboard={getMonthlyScores()} monthLabel={getCurrentMonthLabel()} /></>
   }
 
   if (gamePhase === 'cutscene') {
@@ -395,6 +429,7 @@ function App() {
 
   return (
     <div className="game-container">
+      <MuteButton />
       <TopBar lives={lives} maxLives={STARTING_LIVES} gems={gems} totalGems={TOTAL_GEMS} score={score} />
 
       <div className="game-main">

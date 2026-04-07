@@ -3,6 +3,7 @@ import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
+import audioManager from '../../hooks/useAudio'
 import './JungleRunGame.css'
 
 // Game constants
@@ -126,6 +127,7 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
           ana.vy = JUMP_VELOCITY
           ana.jumping = true
           ana.grounded = false
+          audioManager.play('jump')
         }
       }
     }
@@ -135,6 +137,7 @@ function JungleRunGame({ difficulty, onEnd, isPlaying }) {
         ana.vy = JUMP_VELOCITY
         ana.jumping = true
         ana.grounded = false
+        audioManager.play('jump')
       }
     }
     window.addEventListener('keydown', handleKeyDown)

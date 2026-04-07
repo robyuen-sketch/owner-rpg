@@ -3,6 +3,7 @@ import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, GAME_DURATION, COLORS, SPACE_CONFIG } from './gameConstants'
 import { clearCanvas, drawPixelText, drawPixelRect, drawTimerBar } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
+import audioManager from '../../hooks/useAudio'
 import './SpaceCommandersGame.css'
 
 // --------------- DIMENSIONS ---------------
@@ -701,6 +702,7 @@ function SpaceCommandersGame({ difficulty, onEnd, isPlaying }) {
         y: s.player.y - BULLET_H,
       })
       s.shootCooldown = 0.25
+      audioManager.play('hit')
     }
 
     // Move bullets

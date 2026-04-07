@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
 import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
+import audioManager from '../../hooks/useAudio'
 import { clearCanvas, drawPixelText } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
 import './CastlevaniaGame.css'
@@ -276,12 +277,14 @@ function CastlevaniaGame({ difficulty, onEnd, isPlaying }) {
       ana.jumping = true
       ana.grounded = false
       s.keys.jump = false // consume so you must re-press
+      audioManager.play('jump')
     }
 
     // Whip
     if (s.keys.whip && ana.whipTimer <= 0) {
       ana.whipTimer = WHIP_DURATION
       s.keys.whip = false
+      audioManager.play('hit')
     }
 
     // === PHYSICS ===

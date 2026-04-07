@@ -3,6 +3,7 @@ import { useGameLoop } from './useGameLoop'
 import { CANVAS_WIDTH, CANVAS_HEIGHT, COLORS } from './gameConstants'
 import { clearCanvas, drawPixelText } from './canvasUtils'
 import ControlsOverlay from './ControlsOverlay'
+import audioManager from '../../hooks/useAudio'
 import './QuickDrawGame.css'
 
 // Western palette
@@ -511,6 +512,7 @@ function QuickDrawGame({ difficulty, onEnd, isPlaying }) {
         // Player draws!
         s.playerReacted = true
         s.playerReactionMs = (performance.now() - s.drawTime)
+        audioManager.play('quickDrawShoot')
       }
     }
 
