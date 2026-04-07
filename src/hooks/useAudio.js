@@ -380,13 +380,19 @@ const BGM_PATTERNS = {
 
 function stopBgm() {
   if (currentBgm) {
+    if (currentBgm.cleanup) currentBgm.cleanup()
     currentBgm.stop = true
     currentBgm = null
   }
+  currentTrackName = null
 }
 
+let currentTrackName = null
+
 function playBgm(trackName) {
+  if (trackName === currentTrackName && currentBgm && !currentBgm.stop) return // already playing
   stopBgm()
+  currentTrackName = trackName
   if (_muted) return
 
   const pattern = BGM_PATTERNS[trackName]
