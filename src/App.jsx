@@ -142,16 +142,17 @@ function App() {
 
       if (newLives <= 0) {
         if (hasCheckpoint) {
-          // Respawn at checkpoint with 1 life
+          // Respawn at checkpoint with 3 lives — single-use revive
           setCurrentQuestionIndex(CHECKPOINT_INDEX)
-          setLives(1)
+          setLives(3)
           setScore(checkpointScore)
           setGems(checkpointGems)
           setCorrectAnswers(checkpointCorrect)
+          setHasCheckpoint(false)
           audioManager.play('checkpoint')
           setOverlayData({
             type: 'checkpoint',
-            explanation: "You've been revived at the Repeat Order Railway checkpoint! You have 1 life remaining — make it count!",
+            explanation: "You've been revived at the Repeat Order Railway checkpoint! You have 3 lives remaining — make them count!",
           })
           setGamePhase('overlay')
         } else {
