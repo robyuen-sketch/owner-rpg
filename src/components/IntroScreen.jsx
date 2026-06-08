@@ -61,8 +61,7 @@ function IntroScreen({ onStart, leaderboard = [], monthlyLeaderboard = [], month
           </p>
         </div>
 
-        {leaderboard.length > 0 && (
-          <div className="intro-leaderboard-wrap">
+        <div className="intro-leaderboard-wrap">
             <div className="intro-leaderboard">
               <div className="intro-lb-title">ALL TIME</div>
               {Array.from({ length: 5 }, (_, i) => {
@@ -92,7 +91,6 @@ function IntroScreen({ onStart, leaderboard = [], monthlyLeaderboard = [], month
               })}
             </div>
           </div>
-        )}
 
         <div className="intro-stats">
           <span>LIVES: 10</span>
