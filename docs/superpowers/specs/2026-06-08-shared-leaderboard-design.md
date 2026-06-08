@@ -17,11 +17,16 @@ everyone sees the same All Time (and This Month) top 5.
 ## Architecture
 
 Keep the static Vite/React SPA as-is. Add one Vercel Serverless Function backed by
-Vercel KV (Upstash Redis). The React app talks to it over `fetch`. No framework
-change.
+Upstash Redis (via Vercel KV or the Upstash Marketplace integration). The React app
+talks to it over `fetch`. No framework change.
+
+We use the `@upstash/redis` client directly (rather than `@vercel/kv`) so the
+function works regardless of which integration injects the env vars — it reads
+`KV_REST_API_URL`/`KV_REST_API_TOKEN` (Vercel KV) **or**
+`UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` (Upstash Marketplace).
 
 ```
-React SPA  ──fetch──>  /api/scores  ──@vercel/kv──>  Upstash Redis (sorted sets)
+React SPA  ──fetch──>  /api/scores  ──@upstash/redis──>  Upstash Redis (sorted sets)
    │
    └── falls back to localStorage when the API is unreachable / KV unconfigured
 ```
@@ -75,9 +80,11 @@ behavior. The game never breaks; it just isn't shared in that environment.
 
 ## Provisioning (one-time, manual by Rob)
 
-In the Vercel dashboard: create a KV store and connect it to the `owner-rpg`
-project. Vercel auto-injects `KV_REST_API_URL` and `KV_REST_API_TOKEN`. Add
-`@vercel/kv` as a dependency. No other config.
+In the Vercel dashboard: Storage → create a KV / Upstash Redis store → connect it
+to the `owner-rpg` project. Vercel auto-injects the REST URL + token env vars.
+Redeploy so the function picks them up. `@upstash/redis` is already a dependency.
+No other config. Until a store is connected, `/api/scores` returns 503 and the app
+falls back to localStorage (so previews/local dev still work).
 
 ## Out of scope (YAGNI)
 

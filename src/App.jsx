@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import gameScript from './data/gameScript.json'
 import { getMiniGameForTransition } from './data/miniGameConfig'
 import { getRealmCutscene, isCompletionBeforeMiniGame } from './data/realmCutscenes'
-import { useHighScore } from './hooks/useHighScore'
+import { fetchLeaderboard, submitScore, qualifiesForHighScore } from './lib/leaderboard'
 import audioManager from './hooks/useAudio'
 import MuteButton from './components/MuteButton'
 import IntroScreen from './components/IntroScreen'
@@ -63,7 +63,20 @@ function App() {
   const [miniGameRawTotal, setMiniGameRawTotal] = useState(0)
   const [scoreBreakdown, setScoreBreakdown] = useState(null)
 
-  const { isHighScore, addScore, getScores, getMonthlyScores, getCurrentMonthLabel, getTopScore } = useHighScore()
+  const [leaderboardData, setLeaderboardData] = useState({ allTime: [], monthly: [], monthLabel: '' })
+
+  // Refresh the shared leaderboard whenever we land on the intro screen
+  // (covers initial mount and every return via Play Again).
+  useEffect(() => {
+    if (gamePhase !== 'intro') return
+    let cancelled = false
+    fetchLeaderboard().then((data) => {
+      if (!cancelled) setLeaderboardData(data)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [gamePhase])
 
   // BGM switching based on game phase
   useEffect(() => {
@@ -326,17 +339,19 @@ function App() {
     setScoreBreakdown(breakdown)
     setScore(grandTotal)
 
-    if (isHighScore(grandTotal)) {
+    if (qualifiesForHighScore(grandTotal, leaderboardData.allTime)) {
       setGamePhase('highscore_entry')
     } else {
       setGamePhase('victory_final')
     }
-  }, [correctAnswers, questionBaseTotal, questionSpeedTotal, miniGameRawTotal, gameStartTime, isHighScore])
+  }, [correctAnswers, questionBaseTotal, questionSpeedTotal, miniGameRawTotal, gameStartTime, leaderboardData.allTime])
 
   const handleHighScoreSubmit = useCallback((initials) => {
-    addScore(initials, score)
-    setGamePhase('victory_final')
-  }, [addScore, score])
+    submitScore(initials, score).then((data) => {
+      setLeaderboardData(data)
+      setGamePhase('victory_final')
+    })
+  }, [score])
 
   const handleRestart = useCallback(() => {
     setGamePhase('intro')
@@ -363,7 +378,7 @@ function App() {
   }, [])
 
   if (gamePhase === 'intro') {
-    return <><MuteButton /><IntroScreen onStart={handleStartGame} leaderboard={getScores()} monthlyLeaderboard={getMonthlyScores()} monthLabel={getCurrentMonthLabel()} /></>
+    return <><MuteButton /><IntroScreen onStart={handleStartGame} leaderboard={leaderboardData.allTime} monthlyLeaderboard={leaderboardData.monthly} monthLabel={leaderboardData.monthLabel} /></>
   }
 
   if (gamePhase === 'cutscene') {
@@ -420,9 +435,9 @@ function App() {
         totalGems={TOTAL_GEMS}
         score={score}
         scoreBreakdown={scoreBreakdown}
-        leaderboard={getScores()}
-        monthlyLeaderboard={getMonthlyScores()}
-        monthLabel={getCurrentMonthLabel()}
+        leaderboard={leaderboardData.allTime}
+        monthlyLeaderboard={leaderboardData.monthly}
+        monthLabel={leaderboardData.monthLabel}
         onRestart={handleRestart}
       />
     )
